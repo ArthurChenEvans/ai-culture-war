@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The AI Culture War — A Complete Data Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- DaisyUI + Tailwind -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- ApexCharts -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- Heroicons (outline) -->
+  <script src="https://unpkg.com/heroicons@2.1.3/dist/heroicons.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: 'DM Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="bg-[var(--bg)] text-[var(--txt)] font-sans overflow-x-hidden min-h-screen">
+
+<!-- ═══════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════ -->
+<!-- NAV -->
+<header class="sticky top-0 z-50 bg-[var(--bg)]/90 backdrop-blur border-b border-[var(--border)]">
+  <!-- Fixed nav wrapper -->
+  <div class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/90 backdrop-blur-md">
+
+    <!-- Main navbar row -->
+    <div class="max-w-[1340px] mx-auto px-4 flex items-center justify-between h-14">
+
+      <!-- Logo -->
+      <a href="../index.html" class="font-mono text-[10px] tracking-[3px] uppercase text-[var(--blue)] whitespace-nowrap">
+        AI Culture War
+      </a>
+
+      <!-- Desktop nav (hidden on mobile) -->
+      <nav class="hidden lg:flex items-center gap-1">
+        <a href="../index.html"       class="nav-link active">Dashboard</a>
+        <a href="pages/environmental.html" class="nav-link">Environmental</a>
+        <a href="pages/mechanical.html"    class="nav-link">Mechanical</a>
+        <a href="pages/ethical.html"       class="nav-link">Ethical</a>
+        <a href="pages/philosophical.html" class="nav-link">Philosophical</a>
+        <a href="pages/creative.html"      class="nav-link">Creative</a>
+        <a href="pages/legal.html"         class="nav-link">Legal</a>
+      </nav>
+
+      <!-- Right side: theme picker + mobile hamburger -->
+      <div class="flex items-center gap-2">
+
+        <!-- Mobile hamburger — pure CSS checkbox toggle, no JS -->
+        <label for="mobile-nav-toggle" class="lg:hidden btn btn-ghost btn-sm border border-[var(--border)] text-[var(--mut)] hover:border-[var(--blue)] hover:text-[var(--blue)] cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+          </svg>
+        </label>
+      </div>
+    </div>
+
+    <!-- Mobile overlay — DaisyUI collapse pattern, CSS-only -->
+    <input type="checkbox" id="mobile-nav-toggle" class="peer hidden" />
+
+    <!-- Backdrop: click it to close -->
+    <label for="mobile-nav-toggle"
+           class="fixed inset-0 top-14 bg-[var(--bg)]/80 backdrop-blur-sm z-40
+           hidden peer-checked:flex lg:hidden cursor-default">
+    </label>
+
+    <!-- The actual slide-down menu -->
+    <div class="fixed inset-x-0 top-14 z-50
+            max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out
+            peer-checked:max-h-[calc(100dvh-3.5rem)]
+            bg-[var(--bg)] border-b border-[var(--border)]
+            lg:hidden">
+      <nav class="flex flex-col items-center justify-center gap-3 py-8
+              h-[calc(100dvh-3.5rem)]">
+        <a href="index.html"      class="mob-link active">Dashboard</a>
+        <a href="pages/environmental.html" class="mob-link">Environmental</a>
+        <a href="pages/mechanical.html"    class="mob-link">Mechanical</a>
+        <a href="pages/ethical.html"       class="mob-link">Ethical</a>
+        <a href="pages/philosophical.html" class="mob-link">Philosophical</a>
+        <a href="pages/creative.html"      class="mob-link">Creative</a>
+        <a href="pages/legal.html"         class="mob-link">Legal</a>
+      </nav>
+    </div>
+
+  </div>
+</header>
+
+<style>
+  .nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mut);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: all .25s;
+    white-space: nowrap;
+  }
+  .nav-link:hover, .nav-link.active {
+    color: var(--blue);
+    border-color: var(--blue);
+    background: rgba(94,124,226,.06);
+  }
+  .mob-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--mut);
+    text-decoration: none;
+    padding: 12px 32px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    width: min(340px, 80vw);
+    text-align: center;
+    transition: all .2s;
+  }
+  .mob-link:hover, .mob-link.active {
+    color: var(--blue);
+    border-color: var(--blue);
+    background: rgba(94,124,226,.07);
+  }
+  .theme-opt {
+    width: 100%;
+    text-align: left;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--mut);
+    transition: all .2s;
+  }
+  .theme-opt:hover { color: var(--txt); background: rgba(255,255,255,.04); }
+</style>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════ -->
+<section class="relative text-center px-6 py-16 md:py-20 overflow-hidden hero-glow">
+  <div class="font-mono text-[10px] tracking-[5px] uppercase text-[var(--blue)] mb-4">
+    Pew Research · Stanford HAI · MIT · Expert Interviews · X/Twitter Discourse
+  </div>
+  <h1 class="hero-title text-4xl sm:text-5xl lg:text-7xl font-black leading-tight tracking-tight mb-4">
+    The AI Culture War<br>A Complete Data Story
+  </h1>
+  <p class="max-w-2xl mx-auto text-sm md:text-base leading-relaxed text-[var(--mut)] font-light">
+    Country-level sentiment and awareness. Education programs vs. real opinion. What top experts across climate,
+    energy, water, philosophy, law, and art actually think. And the online battlefield dissected.
+  </p>
+</section>
+
+<!-- Stat row -->
+<div class="flex flex-wrap justify-center gap-8 px-6 pb-10 max-w-3xl mx-auto">
+  <div class="text-center">
+    <div class="text-4xl font-extrabold tracking-tight text-[var(--red)]">50%</div>
+    <div class="font-mono text-[9px] tracking-[2px] uppercase text-[var(--mut)] mt-1">US Adults More Concerned</div>
+  </div>
+  <div class="text-center">
+    <div class="text-4xl font-extrabold tracking-tight text-[var(--blue)]">42%</div>
+    <div class="font-mono text-[9px] tracking-[2px] uppercase text-[var(--mut)] mt-1">Global Median Balanced</div>
+  </div>
+  <div class="text-center">
+    <div class="text-4xl font-extrabold tracking-tight text-[var(--green)]">16%</div>
+    <div class="font-mono text-[9px] tracking-[2px] uppercase text-[var(--mut)] mt-1">Global Median Excited</div>
+  </div>
+  <div class="text-center">
+    <div class="text-4xl font-extrabold tracking-tight text-[var(--gold)]">25</div>
+    <div class="font-mono text-[9px] tracking-[2px] uppercase text-[var(--mut)] mt-1">Countries Surveyed</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     MAIN GRID
+═══════════════════════════════════════════════════ -->
+<div class="max-w-[1340px] mx-auto px-4 pb-16">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+    <!-- ── SECTION DIVIDER ── -->
+    <div class="col-span-full flex items-center gap-4 py-4 section-div">
+      <span class="font-mono text-[10px] tracking-[4px] uppercase text-[var(--dim)] whitespace-nowrap">Country-Level Sentiment</span>
+    </div>
+
+    <!-- Sentiment chart (full) -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.05s">
+      <div class="cb" style="background:linear-gradient(90deg,var(--red),var(--blue),var(--green))"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">AI Sentiment by Country — Three Camps</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">% more concerned · % balanced · % more excited · Pew Spring 2025 · Sorted by concern</div>
+      <div id="sentimentChart"></div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-2">Source: Pew Research Center Spring 2025 Global Attitudes Survey, 25 countries, 28,333+ adults</span>
+    </div>
+
+    <!-- Scatter -->
+    <div class="card-anim relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.1s">
+      <div class="cb" style="background:var(--gold)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Awareness vs. Concern</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Higher awareness ≠ higher fear — it correlates with balance</div>
+      <div id="scatterChart"></div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-2">Source: Pew 2025</span>
+    </div>
+
+    <!-- US Time -->
+    <div class="card-anim relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.15s">
+      <div class="cb" style="background:var(--red)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">US Concern: 2021→2025</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Steady rise in American AI anxiety</div>
+      <div id="usTimeChart"></div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-2">Source: Pew American Trends Panel 2021-2025</span>
+    </div>
+
+    <!-- ── SECTION DIVIDER ── -->
+    <div class="col-span-full flex items-center gap-4 py-4 section-div">
+      <span class="font-mono text-[10px] tracking-[4px] uppercase text-[var(--dim)] whitespace-nowrap">AI Education Programs — Who Actually Teaches It?</span>
+    </div>
+
+    <!-- Education grid (full) -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.2s">
+      <div class="cb" style="background:var(--lime)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Structured AI Education Programs by Country</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Not just "awareness" — countries with actual curricula, courses, and policy frameworks</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-2">
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 text-center" style="border-color:rgba(168,232,77,.3)">
+          <div class="font-bold text-[15px] mb-1">🇫🇮 Finland</div>
+          <div class="font-mono text-2xl font-bold mb-1" style="color:var(--lime)">A+</div>
+          <div class="text-[11px] text-[var(--mut)] leading-snug">"Elements of AI" free course (1% of population goal). AI literacy from early childhood via AuroraAI. OECD AI literacy framework co-author. Mandatory teacher AI training. Media literacy since 1970s.</div>
+        </div>
+        <div class="bg-white/[.02] border rounded-xl p-4 text-center" style="border-color:rgba(94,124,226,.3)">
+          <div class="font-bold text-[15px] mb-1">🇪🇺 EU (via AI Act)</div>
+          <div class="font-mono text-2xl font-bold mb-1 text-[var(--blue)]">A</div>
+          <div class="text-[11px] text-[var(--mut)] leading-snug">EU AI Act mandates AI literacy obligations for providers/deployers (Feb 2025). 22-competency framework across 4 domains. Elements of AI offered in 21 EU languages.</div>
+        </div>
+        <div class="bg-white/[.02] border rounded-xl p-4 text-center" style="border-color:rgba(240,160,48,.3)">
+          <div class="font-bold text-[15px] mb-1">🇯🇵 Japan</div>
+          <div class="font-mono text-2xl font-bold mb-1 text-[var(--gold)]">A-</div>
+          <div class="text-[11px] text-[var(--mut)] leading-snug">Highest "heard a lot" awareness (53%). MEXT school guidelines on AI benefits/risks. AI ethics in national strategy. Strong cultural pragmatism from robotics tradition.</div>
+        </div>
+        <div class="bg-white/[.02] border rounded-xl p-4 text-center" style="border-color:rgba(94,124,226,.2)">
+          <div class="font-bold text-[15px] mb-1">🇬🇧 UK</div>
+          <div class="font-mono text-2xl font-bold mb-1 text-[var(--blue)]">B+</div>
+          <div class="text-[11px] text-[var(--mut)] leading-snug">£185M investment (June 2025) to train 7.5M workers in AI by 2030. AI embedded in secondary education. University scholarship programs. AI Safety Institute (world's first).</div>
+        </div>
+        <div class="bg-white/[.02] border rounded-xl p-4 text-center" style="border-color:rgba(240,160,48,.2)">
+          <div class="font-bold text-[15px] mb-1">🇩🇪 Germany</div>
+          <div class="font-mono text-2xl font-bold mb-1 text-[var(--gold)]">B+</div>
+          <div class="text-[11px] text-[var(--mut)] leading-snug">51% high awareness. EU AI Act implementation. Strong institutional discussion via Fraunhofer, Max Planck. AI included in STEM education frameworks.</div>
+        </div>
+        <div class="bg-white/[.02] border rounded-xl p-4 text-center" style="border-color:rgba(139,92,246,.2)">
+          <div class="font-bold text-[15px] mb-1">🇺🇸 United States</div>
+          <div class="font-mono text-2xl font-bold mb-1 text-[var(--violet)]">B</div>
+          <div class="text-[11px] text-[var(--mut)] leading-snug">47% high awareness but 50% concern — education doesn't reduce fear here. No federal AI curriculum. State-level patchwork. Intense media coverage drives polarization.</div>
+        </div>
+        <div class="bg-white/[.02] border rounded-xl p-4 text-center" style="border-color:rgba(45,212,168,.2)">
+          <div class="font-bold text-[15px] mb-1">🇨🇦 Canada</div>
+          <div class="font-mono text-2xl font-bold mb-1 text-[var(--green)]">B</div>
+          <div class="text-[11px] text-[var(--mut)] leading-snug">Home to Yoshua Bengio & MILA. AI ethics in school guidelines. Pan-Canadian AI Strategy. Strong academic ecosystem but limited K-12 integration.</div>
+        </div>
+        <div class="bg-white/[.02] border rounded-xl p-4 text-center" style="border-color:rgba(255,77,106,.15)">
+          <div class="font-bold text-[15px] mb-1">🌍 Global South</div>
+          <div class="font-mono text-2xl font-bold mb-1 text-[var(--mut)]">C-D</div>
+          <div class="text-[11px] text-[var(--mut)] leading-snug">India (14% aware), Kenya (12%), Nigeria (19%). UNESCO AI ethics framework adopted unevenly. High optimism but low structured education.</div>
+        </div>
+      </div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The education paradox:</strong> Finland and Japan — the best-educated populations on AI — are also the calmest (28% concerned each). The US has high awareness (47%) but the highest concern (50%) — suggesting media-driven awareness without structured educational framing may amplify fear rather than nuance.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: Finnish National Agency for Education, EU AI Act, MEXT Japan, Pew 2025, UNESCO</span>
+    </div>
+
+    <!-- Education level chart (full) -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.25s">
+      <div class="cb" style="background:var(--violet)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Education Level vs. Sentiment (Within Countries)</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Higher education → less fear, more balance — consistent across almost all countries surveyed</div>
+      <div id="eduChart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">Pew's finding:</strong> In about half the countries polled, people with less education are more likely to be mainly concerned about AI. People who use the internet almost constantly are more likely to be excited rather than concerned. Younger adults (18-34) are consistently more enthusiastic than 50+ across all 25 countries.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: Pew Research Center Spring 2025 Global Attitudes Survey</span>
+    </div>
+
+    <!-- ── SECTION DIVIDER ── -->
+    <div class="col-span-full flex items-center gap-4 py-4 section-div">
+      <span class="font-mono text-[10px] tracking-[4px] uppercase text-[var(--dim)] whitespace-nowrap">What The Experts Actually Think</span>
+    </div>
+
+    <!-- Expert opinions (full) -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.3s">
+      <div class="cb" style="background:linear-gradient(90deg,var(--red),var(--gold),var(--green),var(--blue),var(--violet))"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Named Expert Opinions Across Fields</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">What the highest-profile experts in climate, water, energy, philosophy, law, and art say about generative AI</div>
+
+      <!-- Water & Climate -->
+      <div class="mt-3 mb-4 px-4 py-2 rounded-lg border-l-4 bg-white/[.02]" style="border-color:var(--gold)">
+        <div class="font-mono text-[10px] tracking-[2px] uppercase text-[var(--gold)]">🌊 Water & Climate</div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-5">
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Shaolei Ren</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Assoc. Prof. Electrical & Computer Engineering, UC Riverside · TED Speaker · UN AI Environment Panel</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">"Every time you ask an AI chatbot a question, you are also consuming water — without realizing it."</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-cautious">Pragmatic-Cautious</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Elsa Olivetti</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Professor, Dept. of Materials Science & Engineering, MIT · Lead of Decarbonization Mission, MIT Climate Project</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">"When we think about the environmental impact of generative AI, it is not just the electricity you consume when you plug the computer in."</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-cautious">Pragmatic-Cautious</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Noman Bashir</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Computing & Climate Impact Fellow, MIT Climate and Sustainability Consortium</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">"A generative AI training cluster might consume seven or eight times more energy than a typical computing workload."</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-alarmed">Concerned</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Fengqi You</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Prof. Energy Systems Engineering, Cornell · Lead author, Nature Sustainability 2025 AI infrastructure study</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">"The AI infrastructure choices we make this decade will decide whether AI accelerates climate progress or becomes a new environmental burden."</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-cautious">Pragmatic-Cautious</span>
+        </div>
+      </div>
+
+      <!-- Energy & Grid -->
+      <div class="mt-3 mb-4 px-4 py-2 rounded-lg border-l-4 bg-white/[.02]" style="border-color:var(--blue)">
+        <div class="font-mono text-[10px] tracking-[2px] uppercase text-[var(--blue)]">⚡ Energy & Grid</div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mb-5">
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Deepjyoti Deka</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Research Scientist, MIT Energy Initiative</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">Advocates splitting AI workloads so some operations are performed later when more grid electricity comes from renewables.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-pragmatic">Pragmatic-Optimist</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Vijay Gadepally</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Senior Staff, MIT Lincoln Laboratory · AI energy efficiency researcher</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">"The amount of carbon emissions in 1 kilowatt-hour varies quite significantly, even just during the day."</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-pragmatic">Pragmatic-Optimist</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">IEA (Institutional)</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">International Energy Agency · April 2025 Report</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">Projects global data center electricity demand will more than double by 2030, to ~945 TWh. Goldman Sachs forecasts 60% of new data center demand will be met by fossil fuels.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-alarmed">Alarmed</span>
+        </div>
+      </div>
+
+      <!-- AI / Philosophy / Safety -->
+      <div class="mt-3 mb-4 px-4 py-2 rounded-lg border-l-4 bg-white/[.02]" style="border-color:var(--violet)">
+        <div class="font-mono text-[10px] tracking-[2px] uppercase text-[var(--violet)]">🧠 AI Research / Philosophy / Safety</div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mb-5">
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Geoffrey Hinton</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">"Godfather of AI" · 2024 Nobel Prize in Physics · Former Google Chief AI Scientist (resigned May 2023)</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">"I just don't know [if we can control it]. I wish we could." Assigns a "10-20% chance" of AI causing human extinction within 30 years.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-alarmed">Alarmed</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Yoshua Bengio</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">"Godfather of AI" · 2018 Turing Award · Most-cited computer scientist alive · Founder of MILA</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">"When I realized how dangerous the current agency-driven AI trajectory could be for future generations, I knew I had to do all I could to make AI safer."</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-alarmed">Alarmed</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Yann LeCun</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">"Godfather of AI" · 2018 Turing Award · VP & Chief AI Scientist, Meta</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">"If someone claims AGI is just around the corner, do not believe them." Argues current LLMs are fundamentally limited.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-pragmatic">Pragmatic-Optimist</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Noam Chomsky</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Laureate Professor of Linguistics, U of Arizona · MIT Institute Professor Emeritus</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">"The human mind is not, like ChatGPT and its ilk, a lumbering statistical engine for pattern matching." Called ChatGPT "basically high-tech plagiarism."</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-critical">Critical</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Gary Marcus</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Cognitive Scientist · NYU Professor Emeritus · Author of "Rebooting AI"</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">Highlights current AI limitations in reasoning and common sense, urging caution against hype. Has called out hallucinations and reliability failures consistently.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-critical">Critical</span>
+        </div>
+      </div>
+
+      <!-- Law & Regulation -->
+      <div class="mt-3 mb-4 px-4 py-2 rounded-lg border-l-4 bg-white/[.02]" style="border-color:var(--green)">
+        <div class="font-mono text-[10px] tracking-[2px] uppercase text-[var(--green)]">⚖️ Law & Regulation</div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mb-5">
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">EU AI Act (Institutional)</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">World's first comprehensive AI regulation · Enacted 2024, provisions phasing in 2025-2026</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">Classifies AI systems by risk level. Bans social scoring, real-time biometric surveillance. Mandates transparency for general-purpose AI.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-cautious">Regulatory-Cautious</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Japan's Approach</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Government guidelines rather than binding law · Focus on competitiveness + light regulation</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">Japan's MEXT issued school guidelines urging students to understand AI benefits and risks. Government treats AI as a competitiveness tool.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-pragmatic">Pragmatic</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">US State Patchwork</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">No federal AI law · State-level bills proliferating · Active copyright litigation</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">Active lawsuits over training data (NYT v. OpenAI, Getty v. Stability AI). No federal curriculum. Cultural polarization makes unified policy difficult.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-mixed">Polarized</span>
+        </div>
+      </div>
+
+      <!-- Art & Creative -->
+      <div class="mt-3 mb-4 px-4 py-2 rounded-lg border-l-4 bg-white/[.02]" style="border-color:var(--red)">
+        <div class="font-mono text-[10px] tracking-[2px] uppercase text-[var(--red)]">🎨 Art & Creative Fields</div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-5">
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Hayao Miyazaki</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Co-founder, Studio Ghibli · Director of Spirited Away, Princess Mononoke</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">After being shown AI-generated animation in 2016, famously responded with visible disgust: called it "an insult to life itself."</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-critical">Critical</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Professional Artists (Survey)</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">2026 Japanese artist survey · 89% see genAI as "serious threat" to livelihoods</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">Strong opposition in anime/manga circles. "No AI Learning" campaigns since 2022. Concerns center on training data consent, style theft, and economic displacement.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-alarmed">Alarmed</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Expert Hobbyist Artists</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Skilled non-professional creators · Online art communities</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">Often more divided than professionals. Some use AI as a tool for brainstorming. Without livelihood stakes, hobbyists are more likely to experiment.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-mixed">Mixed/Divided</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Hollywood Creatives</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">SAG-AFTRA & WGA strikes (2023) · AI was a central negotiation point</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">The 2023 strikes made AI in creative industries a mainstream labor issue. Writers secured protections. Actors negotiated digital likeness protections.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-alarmed">Alarmed</span>
+        </div>
+      </div>
+
+      <div class="mt-5 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">Cross-field pattern:</strong> Experts who build or study AI systems (Hinton, Bengio) are often the most alarmed about safety. Domain experts (water, energy, climate) are pragmatic-cautious. Creative professionals are the most viscerally opposed. The "Godfather" split is telling: even among the most qualified people on Earth, there is no consensus.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: TED Talks, NYT, MIT News, Nature Sustainability, Congressional testimony, Pew Research, industry surveys</span>
+    </div>
+
+    <!-- Expert sentiment chart (full) -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.35s">
+      <div class="cb" style="background:linear-gradient(90deg,var(--red),var(--gold),var(--green))"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Expert Sentiment by Field — At a Glance</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Aggregated stance from named experts and institutional positions per domain</div>
+      <div id="expertChart"></div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-2">Source: Analysis of public statements, testimony, and publications from named experts above</span>
+    </div>
+
+    <!-- ── SECTION DIVIDER ── -->
+    <div class="col-span-full flex items-center gap-4 py-4 section-div">
+      <span class="font-mono text-[10px] tracking-[4px] uppercase text-[var(--dim)] whitespace-nowrap">The Online Culture War — X/Twitter Discourse</span>
+    </div>
+
+    <!-- Severity chart (full) -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.4s">
+      <div class="cb" style="background:linear-gradient(90deg,var(--anti),var(--pro))"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Insult Severity & Frequency: Anti-AI vs Pro-AI</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Categorized attacks observed in English-language X/Twitter threads · 2025-2026</div>
+      <div id="severityChart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The asymmetry:</strong> Anti-AI rhetoric attacks personhood and humanity ("soulless," "monster," "not human"). Pro-AI rhetoric attacks competence and intelligence ("skill issue," "Luddite," "low IQ"). Dehumanization is categorically harsher than condescension.
+      </div>
+    </div>
+
+    <!-- Verbatim quotes (full) -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.45s">
+      <div class="cb" style="background:linear-gradient(90deg,var(--anti),var(--pro))"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Verbatim Quotes — Side by Side</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Real X/Twitter examples · Anti-AI targets character & humanity · Pro-AI targets skill & intelligence</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+        <div class="qc anti">
+          <h3 class="font-mono text-[10px] tracking-[2px] uppercase pb-2 mb-3 border-b">Anti-AI → Pro-AI Users</h3>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"if you use generative AI, especially for art, I am better than you · judging the f*** out of you · pointing and laughing at you"<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Moral Superiority + Dehumanization</span></div>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"you are uncreative · unoriginal · untalented · a thief · a climate fiend · not to be taken seriously"<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Character Assassination</span></div>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"hollow soulless mockeries" — applied to both AI outputs and users<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Soul-denial / Existential</span></div>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"not even human" — implying AI users lack basic humanity<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Dehumanization</span></div>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"hellish monsters" · "gross" · "these people can vote"<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Moral Condemnation + Intellect</span></div>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"enabling pollution machines" · "destroying creativity for profit"<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Criminal / Environmental Framing</span></div>
+        </div>
+        <div class="qc pro">
+          <h3 class="font-mono text-[10px] tracking-[2px] uppercase pb-2 mb-3 border-b">Pro-AI → Anti-AI Users</h3>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"skill issue" — personal talent deficit as root cause of opposition<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Competence Dismissal</span></div>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"Luddite" · "doomer" · "cope" — irrationally afraid of progress<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Rationality Attack</span></div>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"the people most worried about AI are those with the fewest talents"<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Worth / Talent Dismissal</span></div>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"low IQ" · "below-average intelligence" · "can't adapt"<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Intelligence Attack</span></div>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"you'll be left behind" · "you're cooked!" · "falling behind"<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Economic Obsolescence Threat</span></div>
+          <div class="qi rounded-lg mb-2 px-3 py-2 text-xs leading-relaxed italic">"hysteria" · "cult" · "madness" · "vibecoded emotional reasoning"<br><span class="sv inline-block font-mono text-[8px] tracking-[1px] uppercase px-1.5 py-0.5 rounded mt-1">Sanity / Rationality Attack</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anti / Pro donut charts -->
+    <div class="card-anim relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.5s">
+      <div class="cb" style="background:var(--anti)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Anti-AI Insult Targets</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">What aspect of the person is attacked</div>
+      <div id="antiChart"></div>
+    </div>
+    <div class="card-anim relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.55s">
+      <div class="cb" style="background:var(--pro)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Pro-AI Insult Targets</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">What aspect of the person is attacked</div>
+      <div id="proChart"></div>
+    </div>
+
+    <!-- Gap chart (full) -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.6s">
+      <div class="cb" style="background:var(--gold)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Who Drives the Culture War? The Loud vs. the Majority</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Most people are in the balanced middle — extreme voices dominate platforms</div>
+      <div id="gapChart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The attention gap:</strong> In the US, 38% of adults are in the balanced "equally concerned and excited" camp. Only ~10% are "more excited," and the most vocal anti-AI voices represent a minority (though a loud one). The culture war is real, but it's fought by the fringes while the majority watches, uncertain.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: Pew 2025, Platform dynamics analysis</span>
+    </div>
+
+    <!-- ── SECTION DIVIDER ── -->
+    <div class="col-span-full flex items-center gap-4 py-4 section-div">
+      <span class="font-mono text-[10px] tracking-[4px] uppercase text-[var(--dim)] whitespace-nowrap">The Environmental Impact — A Nuanced Deep Dive</span>
+    </div>
+
+    <!-- Water sector (full) -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.65s">
+      <div class="cb" style="background:linear-gradient(90deg,var(--green),var(--blue),var(--gold),var(--red))"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Global Freshwater Withdrawals — Who Uses What?</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Sector share of total global freshwater withdrawals · Agriculture dominates at 70% · AI is 0.12% · UNESCO/FAO 2024</div>
+      <div id="envWaterSectorChart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The fundamental reality:</strong> The UN, UNESCO, and FAO all agree — agriculture accounts for roughly <strong class="text-[var(--txt)]">70%</strong> of all global freshwater withdrawals. Global AI? It's <strong class="text-[var(--txt)]">0.12%</strong> — a rounding error in the context of a water crisis locked in by decades of agricultural overuse.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: UNESCO World Water Development Report 2024 · FAO 2024 · UNU-INWEH Water Bankruptcy Report Jan 2026</span>
+    </div>
+
+    <!-- Multiplier chart (full) -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.7s">
+      <div class="cb" style="background:var(--blue)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">How Many Times Larger? — Every Sector vs. Global AI Water Use</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Multiplier comparison · Global AI ≈ 0.76 trillion liters · Each bar = how many times larger that sector/product is</div>
+      <div id="envMultiplierChart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">Scale check:</strong> The global electricity sector uses nearly <strong class="text-[var(--txt)]">500×</strong> more water than the entire world's AI infrastructure. Coffee alone uses <strong class="text-[var(--txt)]">268×</strong> more.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: APPA · Visualizing Energy · Water Conservation HK · Swiss Platform for Sustainable Cocoa · IEA</span>
+    </div>
+
+    <!-- Debt chart + US water donut side by side on desktop -->
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.75s">
+      <div class="cb" style="background:var(--gold)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">The $1,000,000 Water Debt — Where It Actually Goes</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Absolute water volumes in trillion liters · Agricultural waste, luxury goods, infrastructure leaks vs. global AI</div>
+      <canvas id="envDebtChart" height="400" style="width:100%;display:block"></canvas>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The mortgage analogy:</strong> If our total global water debt were a $1,000,000 mortgage — agriculture waste from food rot would be $280,000. Infrastructure leaks from aging US pipes alone would be $180,000. Luxury spending on coffee and chocolate combined would be $77,000. Global AI usage is exactly <strong class="text-[var(--txt)]">76 cents</strong>.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: FAO (28% of food production water wasted) · APPA · Swiss Cocoa Platform · IEA</span>
+    </div>
+
+    <div class="card-anim relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.8s">
+      <div class="cb" style="background:var(--violet)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">US Freshwater — Where It Actually Goes</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Share of total US freshwater consumption · Data centers are 0.2%, AI is 0.04%</div>
+      <div id="envUSWaterDonut"></div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-2">Source: USGS · Construction Physics · Masley 2026</span>
+    </div>
+
+    <div class="card-anim relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.85s">
+      <div class="cb" style="background:var(--green)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Your Water Footprint — In ChatGPT Prompts</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">How many AI prompts' worth of water each everyday object used to manufacture · ~2mL per prompt</div>
+      <canvas id="envPromptWaterChart" height="320" style="width:100%;display:block"></canvas>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The SpookyFM caveat:</strong> These per-prompt numbers are real — but as SpookyFM correctly points out, AI usage is <strong class="text-[var(--txt)]">additive</strong>, not substitutive. The point isn't that AI replaces these; it's that worrying about AI's water while ignoring these vastly larger footprints is mathematically absurd.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: Water Calculator · Google DeepMind Water Study · Masley/SpookyFM</span>
+    </div>
+
+    <!-- ── SECTION DIVIDER ── -->
+    <div class="col-span-full flex items-center gap-4 py-4 section-div">
+      <span class="font-mono text-[10px] tracking-[4px] uppercase text-[var(--dim)] whitespace-nowrap">Energy & The Grid — The Real Battleground</span>
+    </div>
+
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.9s">
+      <div class="cb" style="background:var(--lime)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Computing Is Efficient — Time Spent vs. Energy Used</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Americans spend 50% of waking hours online but the internet uses only 4% of total energy · Masley "Computing Is Efficient"</div>
+      <div id="envTimeVsEnergyChart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The efficiency miracle:</strong> Data centers are specifically designed to be the most energy-efficient way of storing and transferring information. Google has achieved a Power Usage Effectiveness (PUE) below 1.05 at some facilities.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: Masley "Computing Is Efficient" · EIA · IEA</span>
+    </div>
+
+    <div class="card-anim relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:.95s">
+      <div class="cb" style="background:var(--gold)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Data Center Energy — AI's Slice of a Slice</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">AI share within data centers · Data centers as % of US grid · 2023 actual vs 2030 projected worst case</div>
+      <div id="envDCEnergyChart"></div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-2">Source: IEA 4E 2025 · IEA Energy and AI · Goldman Sachs</span>
+    </div>
+
+    <div class="card-anim relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:1s">
+      <div class="cb" style="background:var(--red)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">Fossil Fuel Persistence — How Data Centers Keep Coal Alive</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">US grid mix 2024 · Where new data center power actually comes from · Goldman Sachs / Brookings 2025-2026</div>
+      <div id="envFossilChart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The national grid problem:</strong> While AI is globally tiny (0.11% of world emissions), at the national level it's keeping fossil fuel plants open. Goldman Sachs estimates only 40% of new data center power will come from renewables.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: Goldman Sachs Research · Brookings 2026 · Ember US Electricity 2025 · IEA · WRI</span>
+    </div>
+
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:1.05s">
+      <div class="cb" style="background:linear-gradient(90deg,var(--gold),var(--red))"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">The National Disaster — Where AI Strains Are Real</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Data center share of national/state electricity · Current vs projected · Globally small ≠ nationally safe</div>
+      <div id="envNationalChart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The forest and the trees:</strong> Globally, AI is a 0.12% distraction. But nationally, it's a "resource parasite." In Ireland, 100% of all new wind energy between 2017–2023 was absorbed by data centers. In Virginia, data centers already consume <strong class="text-[var(--txt)]">24%</strong> of the state utility's electricity.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: EirGrid · Ofgem Feb 2026 · Dominion Energy · Greenpeace April 2025</span>
+    </div>
+
+    <!-- ── SECTION DIVIDER ── -->
+    <div class="col-span-full flex items-center gap-4 py-4 section-div">
+      <span class="font-mono text-[10px] tracking-[4px] uppercase text-[var(--dim)] whitespace-nowrap">The Bait-and-Switch — Traditional AI vs. Generative AI</span>
+    </div>
+
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:1.1s">
+      <div class="cb" style="background:linear-gradient(90deg,var(--green),var(--red))"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">The Wrench vs. The Rocket — Traditional AI vs. Consumer Generative AI</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Energy disparity · Climate benefit evidence · The greenwashing exposed · Schneider Electric / AI Climate Hoax Report 2026</div>
+      <div id="envWrenchRocketChart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The bait-and-switch:</strong> 97% of verified climate benefit claims come from Traditional/Narrow AI (low energy, high utility). But the massive data center expansion is driven by Consumer Generative AI (high energy, zero proven climate benefit).
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: "AI Climate Hoax" Report Feb 2026 · Schneider Electric · SpookyFM critique</span>
+    </div>
+
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:1.15s">
+      <div class="cb" style="background:linear-gradient(90deg,var(--green),var(--gold),var(--red))"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">The CO₂ Net Equation — AI Savings vs. AI Cost by 2035</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">IEA projections · Existing AI applications only · No breakthrough discoveries assumed</div>
+      <div id="envCO2Chart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The bottom line:</strong> Even without any future breakthroughs, the IEA projects that existing AI applications could save <strong class="text-[var(--txt)]">1,400 Mt of CO₂</strong> by 2035 — roughly 3–4× more than the entire data center industry produces.
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: IEA Energy and AI Report 2025 · "AI Climate Hoax" Report 2026</span>
+    </div>
+
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:1.2s">
+      <div class="cb" style="background:var(--violet)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">AI Emissions in Context — The Global Picture</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">All AI = 0.07% of global emissions · Compared to other sectors · 41,600 Mt total global CO₂ in 2024</div>
+      <canvas id="envGlobalCO2Chart" height="360" style="width:100%;display:block"></canvas>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-2">Source: IEA Global Energy Review 2025 · Masley Cheat Sheet · WMO Global Carbon Budget</span>
+    </div>
+
+    <!-- ── SECTION DIVIDER ── -->
+    <div class="col-span-full flex items-center gap-4 py-4 section-div">
+      <span class="font-mono text-[10px] tracking-[4px] uppercase text-[var(--dim)] whitespace-nowrap">The Upside — What AI Is Actually Solving</span>
+    </div>
+
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:1.25s">
+      <div class="cb" style="background:var(--green)"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">AI Breakthroughs — Verified Impact at Scale</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Materials discovery · Battery innovation · Irrigation efficiency · CO₂ reduction · Peer-reviewed sources</div>
+      <div id="envBreakthroughChart"></div>
+      <div class="mt-5 mb-4 px-4 py-2 rounded-lg border-l-4 bg-white/[.02]" style="border-color:var(--green)">
+        <div class="font-mono text-[10px] tracking-[2px] uppercase text-[var(--green)]">🔬 Key Breakthroughs</div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Google DeepMind — GNoME</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Graph Networks for Materials Exploration · Nature 2023</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">Discovered 2.2 million new crystals (equivalent to ~800 years of human knowledge). 380,000 stable materials now candidates for next-gen tech. Identified 528 potential lithium-ion conductors — 25× more than all previous human-led studies combined.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-positive">Breakthrough</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">Microsoft + PNNL — N2116</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Pacific Northwest National Laboratory · BBC 2024</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">AI screened 32 million potential materials down to 18 candidates in under one week — a process that would have taken 20+ years via traditional methods.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-positive">Breakthrough</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">AI Water Savings — Real Deployments</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">Veolia · Oldcastle · Wint · The Guardian</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">AI leak detection saved 3 billion gallons in New Jersey. AI irrigation optimization saved South American farmers 19 billion gallons over 2 years.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-positive">Proven Deployment</span>
+        </div>
+        <div class="bg-white/[.02] border border-[var(--border)] rounded-xl p-4 hover:border-[var(--bh)] transition-colors">
+          <div class="font-bold text-sm mb-0.5">IEA — Existing AI Applications</div>
+          <div class="font-mono text-[9px] tracking-[.5px] text-[var(--mut)] mb-3 leading-snug">International Energy Agency · Energy and AI Report 2025</div>
+          <div class="text-[13px] leading-relaxed italic text-[#a0a4c0] border-l-3 border-[var(--border)] pl-3">Adoption of existing AI applications could reduce CO₂ emissions by 1,400 Mt by 2035 — roughly 3–4× larger than total data center emissions.</div>
+          <span class="inline-block font-mono text-[9px] tracking-[1px] uppercase px-2 py-0.5 rounded mt-2 st-positive">Net Positive</span>
+        </div>
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-4">Source: Nature (2023) · BBC Technology · IEA Energy and AI · The Guardian · Veolia · Masley</span>
+    </div>
+
+    <div class="card-anim col-span-full relative bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 hover:border-[var(--bh)] transition-colors duration-300" style="animation-delay:1.3s">
+      <div class="cb" style="background:linear-gradient(90deg,var(--green),var(--gold),var(--red))"></div>
+      <h2 class="text-lg font-bold tracking-tight mb-1">The Verdict — Holding Both Truths</h2>
+      <div class="font-mono text-[11px] text-[var(--dim)] mb-4">Why "AI is destroying the planet" AND "AI doesn't matter" are both wrong</div>
+      <div id="envVerdictChart"></div>
+      <div class="mt-4 rounded-xl p-4 text-[13px] leading-relaxed text-[var(--mut)]" style="background:linear-gradient(135deg,rgba(94,124,226,.06),rgba(255,77,106,.04));border:1px solid rgba(94,124,226,.12)">
+        <strong class="text-[var(--blue)]">The "Anti-Waste" position:</strong> "I'm not 'Anti-AI'; I'm 'Anti-Waste.' Nationally, Generative AI is a resource parasite that monopolizes renewables, rescues coal plants, and threatens legally binding carbon budgets. The fix: Support the Specialized AI 'Wrench.' Regulate the Generative AI 'Rocket.' Stop letting Big Tech use one to justify the other."
+      </div>
+      <span class="inline-block font-mono text-[8px] tracking-[1px] uppercase text-[var(--dim)] px-2 py-1 border border-[var(--border)] rounded mt-3">Source: Synthesis of UNU-INWEH · FAO · UNESCO · IEA · AI Climate Hoax Report · Masley · SpookyFM · Chen</span>
+    </div>
+
+  </div><!-- end grid -->
+</div><!-- end max-w wrapper -->
+
+<!-- Footer -->
+<footer class="text-center px-6 py-8 font-mono text-[9px] text-[var(--dim)] tracking-[1px] border-t border-[var(--border)] max-w-[1340px] mx-auto">
+  Data from Pew Research Center (Spring 2025), Stanford HAI/Ipsos, MIT, Nature Sustainability, TED Talks,
+  Congressional testimony, UNESCO, EU AI Act, Finnish National Agency for Education · Online discourse sampled from
+  X/Twitter · Compiled April 2026
+</footer>
+
+<!-- Scripts -->
+<script src="data/chart-data.js"></script>
+<script src="js/charts-sentiment.js"></script>
+<script src="js/charts-education.js"></script>
+<script src="js/charts-experts.js"></script>
+<script src="js/charts-culture.js"></script>
+<script src="js/charts-environment.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The AI Culture War — Legal Explanation</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style type="text/tailwindcss">@theme { --font-sans: 'DM Sans', sans-serif; --font-mono: 'JetBrains Mono', monospace; }</style>
+</head>
+<body class="bg-[var(--bg)] text-[var(--txt)] font-sans overflow-x-hidden min-h-screen">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 bg-[var(--bg)]/90 backdrop-blur border-b border-[var(--border)]">
+  <div class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/90 backdrop-blur-md">
+    <div class="max-w-[1340px] mx-auto px-4 flex items-center justify-between h-14">
+      <a href="../index.html" class="font-mono text-[10px] tracking-[3px] uppercase text-[var(--blue)] whitespace-nowrap">AI Culture War</a>
+      <nav class="hidden lg:flex items-center gap-1">
+        <a href="../index.html"       class="nav-link">Dashboard</a>
+        <a href="environmental.html" class="nav-link">Environmental</a>
+        <a href="mechanical.html"    class="nav-link">Mechanical</a>
+        <a href="ethical.html"       class="nav-link">Ethical</a>
+        <a href="philosophical.html" class="nav-link">Philosophical</a>
+        <a href="creative.html"      class="nav-link">Creative</a>
+        <a href="legal.html"         class="nav-link active">Legal</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <label for="mobile-nav-toggle" class="lg:hidden btn btn-ghost btn-sm border border-[var(--border)] text-[var(--mut)] hover:border-[var(--blue)] hover:text-[var(--blue)] cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </label>
+      </div>
+    </div>
+    <input type="checkbox" id="mobile-nav-toggle" class="peer hidden" />
+    <label for="mobile-nav-toggle" class="fixed inset-0 top-14 bg-[var(--bg)]/80 backdrop-blur-sm z-40 hidden peer-checked:flex lg:hidden cursor-default"></label>
+    <div class="fixed inset-x-0 top-14 z-50 max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out peer-checked:max-h-[calc(100dvh-3.5rem)] bg-[var(--bg)] border-b border-[var(--border)] lg:hidden">
+      <nav class="flex flex-col items-center justify-center gap-3 py-8 h-[calc(100dvh-3.5rem)]">
+        <a href="../index.html"       class="mob-link">Dashboard</a>
+        <a href="environmental.html" class="mob-link">Environmental</a>
+        <a href="mechanical.html"    class="mob-link">Mechanical</a>
+        <a href="ethical.html"       class="mob-link">Ethical</a>
+        <a href="philosophical.html" class="mob-link">Philosophical</a>
+        <a href="creative.html"      class="mob-link">Creative</a>
+        <a href="legal.html"         class="mob-link active">Legal</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav-link { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);text-decoration:none;padding:6px 12px;border:1px solid transparent;border-radius:6px;transition:all .25s;white-space:nowrap; }
+  .nav-link:hover,.nav-link.active { color:var(--blue);border-color:var(--blue);background:rgba(94,124,226,.06); }
+  .mob-link { font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--mut);text-decoration:none;padding:12px 32px;border:1px solid var(--border);border-radius:10px;width:min(340px,80vw);text-align:center;transition:all .2s; }
+  .mob-link:hover,.mob-link.active { color:var(--blue);border-color:var(--blue);background:rgba(94,124,226,.07); }
+  .case-card { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:12px; padding:20px; transition:border-color .3s; }
+  .case-card:hover { border-color:var(--bh); }
+</style>
+
+<!-- HERO -->
+<section class="relative text-center px-6 py-16 overflow-hidden hero-glow">
+  <div class="font-mono text-[10px] tracking-[5px] uppercase text-[var(--green)] mb-4">Copyright · Fair Use · Training Data · EU AI Act · Liability · Courts</div>
+  <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4">The Legal<br>Explanation</h1>
+  <p class="max-w-2xl mx-auto text-sm md:text-base leading-relaxed text-[var(--mut)] font-light">How existing law is being stress-tested by AI — and where it is breaking. The critical distinction between "publicly accessible" and "public domain," the landmark cases, the regulatory frameworks, and the gap between what the law currently says and what a just outcome might require. Not a legal opinion. A data story.</p>
+</section>
+
+<!-- ESSAY BODY -->
+<article class="max-w-[860px] mx-auto px-4 pb-16">
+
+  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">1. Publicly Accessible Does Not Mean Public Domain</h2>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This is the single most important legal distinction in the entire AI debate, and it is the one most frequently misunderstood by both sides. Being publicly accessible — viewable without a login, password, or paywall — does not make content "public domain" or "free for unrestricted use." Public domain means the copyright has expired, been forfeited, or never existed (such as most US government works, or works published before 1929 in the United States as of 2025). Publicly accessible simply means you can view it without barriers. The vast majority of images on the open web — on Flickr, personal websites, news articles, DeviantArt, Twitter — are still copyrighted, even though they are easy to see or download. Copyright protects original works automatically upon creation. No registration or notice is required.</p>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This distinction matters enormously because the training datasets used by major AI image generators — LAION-5B and its successors — were compiled by scraping billions of publicly accessible but copyrighted images from the web. The companies that built these datasets and trained models on them knew, or should have known, that publicly accessible does not equal freely usable. The OSINT (Open Source Intelligence) parallel is instructive: everything OSINT analysts use is publicly available and therefore legal to collect, but aggregating scattered public details into a comprehensive dossier can still be ethically questionable even when it is technically legal. Legality and ethics are separate axes, and the AI training data debate sits uncomfortably at the intersection of both.</p>
+  <blockquote class="border-l-4 border-[var(--green)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(45,212,168,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">The critical implication: scraping publicly accessible (but copyrighted) images for AI training is not automatically "stealing" — courts have not ruled it so, and fair use or text-and-data-mining exceptions may apply. But it is also not automatically legal or ethical. The answer depends on jurisdiction, purpose, scale, and market impact — and the courts are only just beginning to work through these questions.</blockquote>
+
+  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">2. The Training Data Problem — What Copyright Law Was Not Built For</h2>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Copyright law, as it exists in most jurisdictions, was designed to protect human authors against other humans copying their work. It grants creators exclusive rights over reproduction, distribution, adaptation, and public display. What it was not designed to handle is a system that ingests billions of copyrighted works, uses them to train a statistical model, and then produces new outputs that may be similar in style to the training data but are not direct copies of any specific work.</p>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The central legal question is whether training on copyrighted material constitutes copyright infringement. Tech companies argue it does not: training is analogous to a human reading millions of books and then writing something new — the information is processed and transformed, not copied and reproduced. Critics argue the analogy fails: humans cannot store and process works at the scale and fidelity that neural networks do, and the economic impact on creators is real and direct regardless of the technical mechanism.</p>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The technical reality, covered in detail in the Mechanical and Ethical Explanations, complicates the legal analysis. Diffusion models do not store intact images in their weights. During training, they learn to predict and remove noise from corrupted versions of images — encoding abstract statistical patterns, not pixel-for-pixel copies. The final model is a 2–4 GB file of mathematical parameters. No original images can be retrieved from it in the normal case. However, rare memorisation events can cause models to generate outputs that are near-copies of training data — and this has happened in documented cases. The law must grapple with a technology that is genuinely transformative in the aggregate but occasionally reproductive in specific instances.</p>
+  <blockquote class="border-l-4 border-[var(--green)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(45,212,168,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">The fair use doctrine in US law considers four factors: the purpose and character of the use, the nature of the copyrighted work, the amount of the work used, and the effect on the market for the original work. AI training arguably fares well on the first factor (transformative purpose) but poorly on the fourth: if AI-generated content substitutes for licensed human-created content, it demonstrably damages the market for the originals. The balancing act between these factors is what the courts are currently working through.</blockquote>
+
+  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">3. Landmark Cases — The Litigation Landscape</h2>
+
+  <div class="grid grid-cols-1 gap-4 my-6">
+    <div class="case-card">
+      <div class="font-bold text-[15px] mb-1 text-[var(--txt)]">The New York Times v. OpenAI & Microsoft</div>
+      <div class="font-mono text-[9px] tracking-[1px] uppercase text-[var(--green)] mb-3">Filed December 2023 · US District Court, SDNY · Ongoing</div>
+      <p class="text-[13px] leading-relaxed text-[var(--mut)]">The NYT alleged that OpenAI and Microsoft used millions of its articles to train GPT models without permission or payment, and that the models can reproduce NYT content near-verbatim when prompted. The case introduced the concept of "memorisation" — the documented phenomenon of LLMs reproducing training data verbatim — as evidence that training is not merely transformative. This is arguably the most consequential AI copyright case in history, with potential damages in the billions.</p>
+    </div>
+    <div class="case-card">
+      <div class="font-bold text-[15px] mb-1 text-[var(--txt)]">Getty Images v. Stability AI</div>
+      <div class="font-mono text-[9px] tracking-[1px] uppercase text-[var(--green)] mb-3">Filed January 2023 · UK & US · UK ruling November 2025</div>
+      <p class="text-[13px] leading-relaxed text-[var(--mut)]">Getty alleged that Stability AI scraped over 12 million images from its library without license to train Stable Diffusion. The UK High Court ruled in November 2025 that the trained model itself is not an "infringing copy" since it does not store or reproduce works intact — a significant precedent that aligns with the technical reality of how diffusion models work. The case continues on other grounds in both jurisdictions.</p>
+    </div>
+    <div class="case-card">
+      <div class="font-bold text-[15px] mb-1 text-[var(--txt)]">Andersen et al. v. Stability AI, Midjourney & DeviantArt</div>
+      <div class="font-mono text-[9px] tracking-[1px] uppercase text-[var(--green)] mb-3">Filed January 2023 · Class Action · Partially dismissed 2024</div>
+      <p class="text-[13px] leading-relaxed text-[var(--mut)]">A class action brought by artists including Sarah Andersen, Kelly McKernan, and Karla Ortiz, alleging that their distinctive artistic styles were scraped and used to train image generation models. The court's partial dismissal clarified a critical principle: style itself is not copyrightable under current law, which protects specific expression, not method or aesthetic approach. The case continues on other grounds, including claims about intermediate copies made during training.</p>
+    </div>
+    <div class="case-card">
+      <div class="font-bold text-[15px] mb-1 text-[var(--txt)]">Thaler v. Perlmutter (US Copyright Office)</div>
+      <div class="font-mono text-[9px] tracking-[1px] uppercase text-[var(--green)] mb-3">Decided August 2023 · DC Circuit · Affirmed 2025</div>
+      <p class="text-[13px] leading-relaxed text-[var(--mut)]">Stephen Thaler attempted to register copyright in an AI-generated artwork on behalf of his AI system "DABUS." The US Copyright Office refused, and the DC Circuit upheld the refusal: copyright requires human authorship. This ruling addresses AI outputs, not training — it does not say training is "stealing." It says AI-generated works without sufficient human creative input cannot receive copyright protection. The question of how much human involvement is sufficient remains unresolved.</p>
+    </div>
+    <div class="case-card">
+      <div class="font-bold text-[15px] mb-1 text-[var(--txt)]">Kneschke v. LAION (Hamburg, Germany)</div>
+      <div class="font-mono text-[9px] tracking-[1px] uppercase text-[var(--green)] mb-3">Appeal ruling 2025 · Hamburg Court · Text-and-data-mining exception upheld</div>
+      <p class="text-[13px] leading-relaxed text-[var(--mut)]">A German photographer challenged the LAION dataset's inclusion of his copyrighted images. The Hamburg appeal court upheld dataset creation under the EU's text-and-data-mining exceptions for non-commercial research, even though the resulting datasets were subsequently used to enable commercial AI products. This ruling suggests that the scraping-for-research pipeline may be legally protected even when downstream applications are commercial — a distinction that will almost certainly be tested further.</p>
+    </div>
+    <div class="case-card">
+      <div class="font-bold text-[15px] mb-1 text-[var(--txt)]">Thomson Reuters v. Ross Intelligence</div>
+      <div class="font-mono text-[9px] tracking-[1px] uppercase text-[var(--green)] mb-3">2025 · US · Some training found fair use; some not</div>
+      <p class="text-[13px] leading-relaxed text-[var(--mut)]">Thomson Reuters sued an AI legal research startup that trained on Westlaw data. The court's mixed ruling — finding some AI training fair use for transformative purposes, but rejecting it where data was clearly pirated or directly competitive — illustrates the nuanced, case-by-case approach courts are taking. There is no blanket rule. Context matters.</p>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">4. The EU AI Act — The World's First Comprehensive AI Regulation</h2>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The EU AI Act, which entered into force in August 2024, is the world's first comprehensive legal framework for artificial intelligence. It classifies AI systems by risk level and imposes obligations proportionate to that risk. High-risk applications — in hiring, credit scoring, healthcare, law enforcement — face strict transparency, testing, and accountability requirements. Some applications are banned outright: real-time remote biometric surveillance in public spaces, AI-based social scoring, and systems that exploit psychological vulnerabilities.</p>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">For General Purpose AI models like GPT-4 and Claude, the Act imposes transparency obligations: providers must publish summaries of training data, must comply with EU copyright law (specifically, they must implement opt-out mechanisms for rights holders who do not want their content used in training), and must maintain technical documentation. The copyright provisions are particularly significant — they represent the EU's attempt to impose a legal framework on training data practices before courts have fully settled the question. This is the most concrete regulatory attempt anywhere in the world to address the "publicly accessible versus public domain" problem through enforceable law rather than voluntary industry norms.</p>
+  <blockquote class="border-l-4 border-[var(--green)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(45,212,168,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">The AI Act's phased implementation timeline — with the highest-risk provisions not fully applicable until 2027 — means that much of the technology it regulates will have evolved significantly before the law is fully in force. This is the fundamental regulatory challenge: AI moves at the speed of computation, and law moves at the speed of committee.</blockquote>
+
+  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">5. Liability — Who Is Responsible When AI Causes Harm?</h2>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">AI liability is one of the most legally unsettled questions in technology law. Existing product liability frameworks were designed for physical products with predictable failure modes. AI systems can fail in unpredictable, contextually complex ways — generating false medical advice, producing discriminatory hiring recommendations, or making incorrect autonomous vehicle decisions — and it is often unclear who bears responsibility: the model developer, the company that deployed it, the organisation that integrated it into a product, or the end user who applied it in a specific context.</p>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The EU AI Liability Directive (proposed 2022, still in negotiation) attempts to address this by creating a presumption of causality: if an AI system violates its legal obligations and causes harm, the victim can presume the violation caused the harm without having to prove the technical mechanism — shifting the burden to the AI developer to disprove causation. The US has no equivalent federal framework, leaving liability questions to be resolved through existing tort law, product liability doctrine, and the patchwork of state-level legislation described below.</p>
+
+  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">6. The US Patchwork — State Law, Federal Paralysis, and Bipartisan Complexity</h2>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">In the absence of federal AI legislation in the United States, a complex patchwork of state laws has begun to emerge. By early 2026, more than 40 states had introduced AI-related legislation, covering everything from algorithmic decision-making in employment to deepfake restrictions to requirements for AI disclosure in political advertising. The variation in approach is significant: California has taken a more interventionist approach, while states like Texas have focused on preventing what they call "discriminatory" AI restrictions.</p>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Federal legislative efforts have been hampered by the genuinely cross-cutting nature of AI politics: opposition to AI regulation has come from both libertarian free-market conservatives and progressive tech optimists, while support has come from both labour-aligned Democrats (worried about job displacement) and national security hawks (worried about Chinese AI competition requiring domestic safety standards). AI regulation scrambles conventional political alignments in ways that make coalition-building exceptionally difficult.</p>
+
+  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">7. The Corporate Accountability Argument — Blame the Scraper, Not the Model</h2>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">After reviewing the legal landscape, the strongest argument converges with the strongest ethical argument from the Ethical Explanation: the fault lies with the corporations that scraped copyrighted data without consent, not with the AI technology itself or its end users. The analogy, as articulated in that essay, is precise: images used to train AI were obtained without proper licensing. That is an issue of corporate data practices, and it should be addressed through regulation, litigation, and licensing frameworks. The AI model learned from them; the model is not at fault in the same way a student studying from a bootleg art book is not at fault for the bootlegging.</p>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The legal system is slowly moving toward this framing. The UK's Getty ruling (model is not an infringing copy), the German LAION ruling (dataset creation for research may be protected), and the partial dismissals in the Andersen case (style is not copyrightable) all suggest that courts are distinguishing between the scraping/compilation step and the model/output step. The strongest legal claims — the NYT case, the Getty US proceedings — focus on specific, documented instances of near-verbatim reproduction, not on the abstract claim that "training = stealing."</p>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The most likely long-term outcome is not a blanket ruling that AI training is illegal, but a regulatory framework that requires transparency, opt-out mechanisms, and licensing for commercial training data — similar to how search engines evolved from indexing everything without permission to operating within a framework of robots.txt, DMCA takedowns, and content licensing agreements. The technology will survive. The data practices will be regulated. The corporations that resist this transition will face legal consequences. And the end users — the hobbyists, the grandmothers, the developers — will continue to use the tools without bearing moral or legal responsibility for the corporate decisions that built them.</p>
+
+  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">8. The Verdict: Law in Motion</h2>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The legal landscape around AI is not settled, and anyone who claims otherwise — in either direction — is wrong. No US court has issued a final ruling declaring that AI training on copyrighted data is straightforward infringement. No US court has issued a final ruling declaring it is always fair use. The cases are in motion, the regulatory frameworks are being built, and the technology continues to evolve faster than the law can respond.</p>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">What we can say with confidence is this: <strong class="text-[var(--txt)]">publicly accessible does not equal public domain,</strong> and the corporations that treated the entire open web as a free training buffet will eventually face consequences for that assumption. <strong class="text-[var(--txt)]">Style is not copyrightable,</strong> which limits the legal options available to artists whose aesthetic is replicated without specific works being copied. <strong class="text-[var(--txt)]">AI-generated outputs without sufficient human creative input cannot receive copyright protection,</strong> which creates an odd legal vacuum where AI output may infringe no one's copyright while also being owned by no one. And <strong class="text-[var(--txt)]">the EU is ahead of everyone else</strong> in building a regulatory framework, while the US remains trapped in a patchwork of state laws and federal paralysis.</p>
+  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The just outcome — one that protects creators, enables innovation, and holds corporations accountable for their data practices — requires surgical legal precision, not blanket bans. The tools should be legal. The training data practices should be regulated. The corporations should be held to account. The users should be left alone. That is the trajectory the law appears to be taking, slowly and unevenly, across jurisdictions. Whether it arrives in time to matter is the open question.</p>
+
+  <!-- References -->
+  <div class="mt-12 pt-6 border-t border-[var(--border)]">
+    <h3 class="text-base font-bold mb-4 text-[var(--gold)]">References</h3>
+    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">European Parliament. (2024). <em>Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence (AI Act)</em>. Official Journal of the European Union.</p>
+    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Getty Images (US) Inc. v. Stability AI Inc. (2023). No. 1:23-cv-00135 (D. Del.).</p>
+    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Getty Images Ltd v. Stability AI Ltd. (2025). [2025] EWHC (Ch) (UK High Court).</p>
+    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Andersen v. Stability AI Ltd et al. (2023). No. 3:23-cv-00201 (N.D. Cal.).</p>
+    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">New York Times Co. v. Microsoft Corp. et al. (2023). No. 1:23-cv-11195 (S.D.N.Y.).</p>
+    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Thaler v. Perlmutter. (2023). No. 22-1564 (D.D.C.).</p>
+    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Kneschke v. LAION e.V. (2025). OLG Hamburg (Hamburg Court of Appeal, Germany).</p>
+    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Thomson Reuters Enterprise Centre GmbH v. Ross Intelligence Inc. (2025). No. 1:20-cv-00613 (D. Del.).</p>
+    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">US Copyright Office. (2023). <em>Copyright registration guidance: Works containing material generated by artificial intelligence</em>. Federal Register, 88(51), 16190–16194.</p>
+    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Chen. (2025–2026). Original arguments on public accessibility versus public domain, corporate accountability, and the OSINT parallel [Discord discussions and personal analysis].</p>
+  </div>
+</article>
+
+<footer class="text-center px-6 py-8 font-mono text-[9px] text-[var(--dim)] tracking-[1px] border-t border-[var(--border)] max-w-[1340px] mx-auto">
+  The AI Culture War — A Complete Data Story · Legal Explanation · Compiled April 2026
+</footer>
+</body>
+</html>

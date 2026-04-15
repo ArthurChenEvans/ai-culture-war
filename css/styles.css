@@ -1,0 +1,130 @@
+/* ── CSS Variables (shared palette) ── */
+:root {
+  --bg: #07080c;
+  --card: #0e1018;
+  --border: #1e2038;
+  --bh: #2d3060;
+  --red: #ff4d6a;
+  --blue: #5e7ce2;
+  --green: #2dd4a8;
+  --gold: #f0a030;
+  --anti: #ff3355;
+  --pro: #3388ff;
+  --txt: #d8dae8;
+  --mut: #6a6d88;
+  --dim: #3e4060;
+  --violet: #8b5cf6;
+  --lime: #a8e84d;
+}
+
+/* ── Body noise texture overlay ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 10000;
+}
+
+/* ── Gradient hero text ── */
+.hero-title {
+  background: linear-gradient(135deg, #fff 20%, var(--blue) 60%, var(--red) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card entrance animation ── */
+@keyframes ci {
+  to { opacity: 1; transform: translateY(0); }
+}
+.card-anim {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: ci .5s ease forwards;
+}
+
+/* ── Top colour bar on cards ── */
+.cb {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+/* ── ApexCharts theme overrides ── */
+.apexcharts-tooltip {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--txt) !important;
+}
+.apexcharts-tooltip-title {
+  background: transparent !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.apexcharts-xaxis-label,
+.apexcharts-yaxis-label {
+  fill: var(--mut) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 9px !important;
+}
+.apexcharts-legend-text {
+  color: var(--mut) !important;
+  font-family: 'DM Sans' !important;
+  font-size: 10px !important;
+}
+.apexcharts-gridline {
+  stroke: #1a1c30 !important;
+}
+
+/* ── Hero radial glow ── */
+.hero-glow::before {
+  content: '';
+  position: absolute;
+  top: -300px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(94,124,226,.12) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* ── Divider lines ── */
+.section-div::before,
+.section-div::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* ── Quote comparison columns ── */
+.qc.anti .qi { background: rgba(255,51,85,.05); border-left: 3px solid var(--anti); color: #e8a0a8; }
+.qc.pro  .qi { background: rgba(51,136,255,.05); border-left: 3px solid var(--pro);  color: #a0c0e8; }
+.qc.anti .sv { background: rgba(255,51,85,.12); color: var(--anti); }
+.qc.pro  .sv  { background: rgba(51,136,255,.12); color: var(--pro); }
+.qc.anti h3 { color: var(--anti); border-color: rgba(255,51,85,.25); }
+.qc.pro  h3  { color: var(--pro);  border-color: rgba(51,136,255,.25); }
+
+/* ── Stance badge colours ── */
+.st-cautious  { background: rgba(240,160,48,.12);  color: var(--gold);   border: 1px solid rgba(240,160,48,.25); }
+.st-critical  { background: rgba(255,51,85,.10);   color: var(--anti);   border: 1px solid rgba(255,51,85,.20); }
+.st-pragmatic { background: rgba(94,124,226,.10);  color: var(--blue);   border: 1px solid rgba(94,124,226,.20); }
+.st-alarmed   { background: rgba(255,77,106,.12);  color: var(--red);    border: 1px solid rgba(255,77,106,.25); }
+.st-positive  { background: rgba(45,212,168,.10);  color: var(--green);  border: 1px solid rgba(45,212,168,.20); }
+.st-mixed     { background: rgba(139,92,246,.10);  color: var(--violet); border: 1px solid rgba(139,92,246,.20); }
+
+/* ── Mobile nav overlay ── */
+#mobile-menu {
+  transition: opacity .25s ease, transform .25s ease;
+}
+#mobile-menu.hidden {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+#mobile-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
