@@ -1,181 +1,578 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The AI Culture War — Mechanical Explanation</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="../css/styles.css">
   <style type="text/tailwindcss">
-    @theme { --font-sans: 'DM Sans', sans-serif; --font-mono: 'JetBrains Mono', monospace; }
-  </style>
+    @theme { --font-sans: 'DM Sans', sans-serif; --font-mono: 'JetBrains Mono', monospace; }</style>
 </head>
+
 <body class="bg-[var(--bg)] text-[var(--txt)] font-sans overflow-x-hidden min-h-screen">
 
-<!-- NAV -->
-<header class="sticky top-0 z-50 bg-[var(--bg)]/90 backdrop-blur border-b border-[var(--border)]">
-  <!-- Fixed nav wrapper -->
-  <div class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/90 backdrop-blur-md">
-
-    <!-- Main navbar row -->
-    <div class="max-w-[1340px] mx-auto px-4 flex items-center justify-between h-14">
-
-      <!-- Logo -->
-      <a href="../index.html" class="font-mono text-[10px] tracking-[3px] uppercase text-[var(--blue)] whitespace-nowrap">
-        AI Culture War
-      </a>
-
-      <!-- Desktop nav (hidden on mobile) -->
-      <nav class="hidden lg:flex items-center gap-1">
-        <a href="../index.html"       class="nav-link">Dashboard</a>
-        <a href="environmental.html" class="nav-link">Environmental</a>
-        <a href="mechanical.html"    class="nav-link active">Mechanical</a>
-        <a href="ethical.html"       class="nav-link">Ethical</a>
-        <a href="philosophical.html" class="nav-link">Philosophical</a>
-        <a href="creative.html"      class="nav-link">Creative</a>
-        <a href="legal.html"         class="nav-link">Legal</a>
-      </nav>
-
-      <!-- Right side: theme picker + mobile hamburger -->
-      <div class="flex items-center gap-2">
-
-        <!-- Mobile hamburger — pure CSS checkbox toggle, no JS -->
-        <label for="mobile-nav-toggle" class="lg:hidden btn btn-ghost btn-sm border border-[var(--border)] text-[var(--mut)] hover:border-[var(--blue)] hover:text-[var(--blue)] cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-          </svg>
-        </label>
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 bg-[var(--bg)]/90 backdrop-blur border-b border-[var(--border)]">
+    <div class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/90 backdrop-blur-md">
+      <div class="max-w-[1340px] mx-auto px-4 flex items-center justify-between h-14">
+        <a href="../index.html"
+          class="font-mono text-[10px] tracking-[3px] uppercase text-[var(--blue)] whitespace-nowrap">AI Culture War</a>
+        <nav class="hidden lg:flex items-center gap-1">
+          <a href="../index.html" class="nav-link">Dashboard</a>
+          <a href="environmental.html" class="nav-link">Environmental</a>
+          <a href="mechanical.html" class="nav-link active">Mechanical</a>
+          <a href="ethical.html" class="nav-link">Ethical</a>
+          <a href="philosophical.html" class="nav-link">Philosophical</a>
+          <a href="creative.html" class="nav-link">Creative</a>
+          <a href="legal.html" class="nav-link">Legal</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <label for="mobile-nav-toggle"
+            class="lg:hidden btn btn-ghost btn-sm border border-[var(--border)] text-[var(--mut)] hover:border-[var(--blue)] hover:text-[var(--blue)] cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </label>
+        </div>
+      </div>
+      <input type="checkbox" id="mobile-nav-toggle" class="peer hidden" />
+      <label for="mobile-nav-toggle"
+        class="fixed inset-0 top-14 bg-[var(--bg)]/80 backdrop-blur-sm z-40 hidden peer-checked:flex lg:hidden cursor-default"></label>
+      <div
+        class="fixed inset-x-0 top-14 z-50 max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out peer-checked:max-h-[calc(100dvh-3.5rem)] bg-[var(--bg)] border-b border-[var(--border)] lg:hidden">
+        <nav class="flex flex-col items-center justify-center gap-3 py-8 h-[calc(100dvh-3.5rem)]">
+          <a href="../index.html" class="mob-link">Dashboard</a>
+          <a href="environmental.html" class="mob-link">Environmental</a>
+          <a href="mechanical.html" class="mob-link active">Mechanical</a>
+          <a href="ethical.html" class="mob-link">Ethical</a>
+          <a href="philosophical.html" class="mob-link">Philosophical</a>
+          <a href="creative.html" class="mob-link">Creative</a>
+          <a href="legal.html" class="mob-link">Legal</a>
+        </nav>
       </div>
     </div>
+  </header>
 
-    <!-- Mobile overlay — DaisyUI collapse pattern, CSS-only -->
-    <input type="checkbox" id="mobile-nav-toggle" class="peer hidden" />
+  <style>
+    .nav-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--mut);
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      transition: all .25s;
+      white-space: nowrap;
+    }
 
-    <!-- Backdrop: click it to close -->
-    <label for="mobile-nav-toggle"
-           class="fixed inset-0 top-14 bg-[var(--bg)]/80 backdrop-blur-sm z-40
-           hidden peer-checked:flex lg:hidden cursor-default">
-    </label>
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--blue);
+      border-color: var(--blue);
+      background: rgba(94, 124, 226, .06);
+    }
 
-    <!-- The actual slide-down menu -->
-    <div class="fixed inset-x-0 top-14 z-50
-            max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out
-            peer-checked:max-h-[calc(100dvh-3.5rem)]
-            bg-[var(--bg)] border-b border-[var(--border)]
-            lg:hidden">
-      <nav class="flex flex-col items-center justify-center gap-3 py-8
-              h-[calc(100dvh-3.5rem)]">
-        <a href="../index.html"       class="mob-link">Dashboard</a>
-        <a href="environmental.html" class="mob-link">Environmental</a>
-        <a href="mechanical.html"    class="mob-link active">Mechanical</a>
-        <a href="ethical.html"       class="mob-link">Ethical</a>
-        <a href="philosophical.html" class="mob-link">Philosophical</a>
-        <a href="creative.html"      class="mob-link">Creative</a>
-        <a href="legal.html"         class="mob-link">Legal</a>
-      </nav>
+    .mob-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--mut);
+      text-decoration: none;
+      padding: 12px 32px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      width: min(340px, 80vw);
+      text-align: center;
+      transition: all .2s;
+    }
+
+    .mob-link:hover,
+    .mob-link.active {
+      color: var(--blue);
+      border-color: var(--blue);
+      background: rgba(94, 124, 226, .07);
+    }
+
+    .theme-opt {
+      width: 100%;
+      text-align: left;
+      padding: 6px 10px;
+      border-radius: 6px;
+      color: var(--mut);
+      transition: all .2s;
+    }
+
+    .theme-opt:hover {
+      color: var(--txt);
+      background: rgba(255, 255, 255, .04);
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="relative text-center px-6 py-16 overflow-hidden hero-glow">
+    <div class="font-mono text-[10px] tracking-[5px] uppercase text-[var(--green)] mb-4">3Blue1Brown · Torvalds ·
+      Attention · Superposition · Memorisation</div>
+    <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4">The
+      Mechanical<br>Explanation</h1>
+    <p class="max-w-2xl mx-auto text-sm md:text-base leading-relaxed text-[var(--mut)] font-light">A technical
+      walkthrough of how large language models actually work — from next-word prediction and transformer architecture to
+      fact storage, superposition, and the empirically-documented memorisation that complicates the "it's not copying"
+      defence — followed by the practitioner's view from the programming trenches. Not magic. Not clean. Mathematics
+      with edge cases.</p>
+  </section>
+
+  <!-- ESSAY BODY -->
+  <article class="max-w-[860px] mx-auto px-4 pb-16">
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">1. The Core Idea: Predicting the
+      Next Word</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Grant Sanderson, the mathematician behind 3Blue1Brown,
+      opens his explanation of large language models with an analogy that cuts through the noise immediately
+      (3Blue1Brown, 2024a). Imagine you find a movie script describing a conversation between a person and their AI
+      assistant, but the AI's response has been torn off. If you had a machine that could look at any piece of text and
+      sensibly predict what word comes next, you could reconstruct the missing dialogue one word at a time — feeding in
+      what you have, reading off the prediction, appending it, and repeating. When you interact with a chatbot, this is
+      exactly what is happening. A large language model is, at its core, a sophisticated mathematical function that
+      takes a piece of text and assigns a probability to every possible next word (3Blue1Brown, 2024a).</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This is the first and most important thing to understand
+      about the AI culture war: the technology at the centre of the debate is not a sentient mind, not a creative agent,
+      and not — as some descriptions suggest — a simple collage machine. It is a probability engine. It takes text in
+      and produces a weighted list of what might come next. To build a chatbot from this engine, you lay out some
+      introductory text describing a helpful AI assistant, append whatever the user has typed, and then let the model
+      repeatedly predict what such an assistant would say next, one word at a time (3Blue1Brown, 2024a). The output is
+      then presented to the user as a response.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Crucially, the model does not predict one word with
+      certainty. It assigns probabilities across all possible next words. The output tends to look more natural if it is
+      allowed to occasionally select less likely words at random, which means that even though the model itself is a
+      deterministic mathematical function, the same prompt will typically produce a different answer each time it is run
+      (3Blue1Brown, 2024a). This is not evidence of creativity or consciousness. It is a deliberate design feature —
+      randomness injected into a probability distribution to avoid repetitive, stilted output.</p>
+    <blockquote
+      class="border-l-4 border-[var(--blue)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(94,124,226,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">
+      The distinction matters enormously for the culture war. When someone claims that AI "understands" or "creates" or
+      "steals ideas," they are making a philosophical claim about a machine that does one thing: predict the
+      statistically most plausible next word. Whether that prediction constitutes understanding is a separate question —
+      one explored in the Philosophical Explanation — but the mechanism itself is pure mathematics.</blockquote>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">2. Training: Tuning 175 Billion
+      Dials</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">How does the model learn to make these predictions? By
+      processing an enormous amount of text, typically pulled from the internet. Sanderson puts the scale into
+      perspective: for a human to read the amount of text used to train GPT-3, reading non-stop 24 hours a day, seven
+      days a week, it would take over 2,600 years. Larger models since then have trained on far, far more (3Blue1Brown,
+      2024a).</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The way a language model behaves is entirely determined
+      by continuous numerical values called parameters or weights. GPT-3 has 175 billion of them (3Blue1Brown, 2024b).
+      No human ever deliberately sets those parameters. They begin at random — meaning the model initially outputs
+      gibberish — and are then repeatedly refined based on example text. The training process works by passing all but
+      the last word of an example into the model, comparing the model's prediction with the true last word, and then
+      using an algorithm called backpropagation to tweak all 175 billion parameters so that the model becomes slightly
+      more likely to choose the correct word next time (3Blue1Brown, 2024a).</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The scale of computation involved is extraordinary.
+      Published estimates put the total compute used to train GPT-3 at roughly 3.14 × 10²³ floating-point operations. At
+      a rate of one billion operations per second, that would take on the order of ten million years — a figure
+      Sanderson gives as "well over 100 million years" in some framings depending on which operations are counted
+      (3Blue1Brown, 2024a). Either way, the point stands: this computation is only made possible by GPUs — specialised
+      computer chips optimised for running many operations in parallel — and by cluster-scale infrastructure that did
+      not exist a decade ago.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">But raw pre-training is only part of the story. The goal
+      of auto-completing a random passage of internet text is very different from the goal of being a helpful AI
+      assistant. To bridge this gap, chatbots undergo a second phase of training called reinforcement learning with
+      human feedback (RLHF). Human workers flag unhelpful or problematic outputs, and their corrections further adjust
+      the model's parameters to make it more likely to produce responses that users actually prefer (3Blue1Brown,
+      2024a). This is how a next-word predictor becomes something that feels like a conversational partner.</p>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">3. The Transformer: How Words Talk
+      to Each Other</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Prior to 2017, most language models processed text one
+      word at a time — sequentially, from left to right. This made them slow and difficult to parallelise. Then a team
+      of researchers at Google introduced a new architecture called the transformer (Vaswani et al., 2017), and
+      everything changed. Transformers do not read text from start to finish; they process it all at once, in parallel
+      (3Blue1Brown, 2024a). This is the architecture that put the "T" in GPT.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Sanderson's deeper technical series (3Blue1Brown, 2024b)
+      walks through the transformer step by step. The very first thing that happens is that each word in the input text
+      is converted into a vector — a long list of numbers. In GPT-3, each word becomes a list of 12,288 numbers
+      (3Blue1Brown, 2024b). These vectors are not arbitrary; during training, the model learns to position words so that
+      similar meanings correspond to nearby vectors in this high-dimensional space. The classic example: if you take the
+      vector for "woman," subtract the vector for "man," and add the result to "uncle," you land very close to "aunt"
+      (3Blue1Brown, 2024b; 3Blue1Brown, 2024c). The direction between "man" and "woman" encodes gender information, and
+      the model has learned this structure entirely from data.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The core mechanism that allows the transformer to work
+      is called <em>attention</em>. At each layer, every word's vector can "look at" every other word's vector and
+      update itself based on what is relevant. The word "bank" in "river bank" and "bank account" starts with the same
+      initial vector, but after several attention layers, the two vectors have diverged — the first has absorbed context
+      from "river," the second from "account." The final vector for the last word in the input is what gets used to
+      predict the next word (3Blue1Brown, 2024b). This is how a system that fundamentally processes tokens can appear to
+      handle semantics: the meaning emerges from the learned pattern of which vectors attend to which other vectors.</p>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">4. Fact Storage: Facts as Matrix
+      Products</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Where, physically, does a language model "store" the
+      fact that Michael Jordan plays basketball? Sanderson's third technical chapter (3Blue1Brown, 2024c) addresses this
+      with remarkable clarity. The answer is not a lookup table. Facts are stored in the multi-layer perceptron (MLP)
+      blocks between attention layers — specifically, as patterns of weights in two large matrices that, when multiplied
+      against an appropriate input vector, produce an output that encodes the fact. The "Michael Jordan" direction in
+      vector space combines with the weights to yield a vector that has been nudged toward "basketball." The fact is a
+      learned geometric relationship, not a stored string.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This distributed storage has several consequences. It
+      makes models extraordinarily parameter-efficient for common facts that show up repeatedly in training data. It
+      also makes them prone to confident errors — the geometry that almost encodes a fact may, under slightly different
+      input conditions, encode a similar-sounding but wrong fact. Hallucination is not a bug in the implementation; it
+      is a natural consequence of storing information as learned weights rather than as retrievable entries.</p>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">5. Superposition: Why the Model
+      Knows More Than It "Should"</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This brings us to perhaps the most thought-provoking
+      mathematical insight in the 3Blue1Brown series: the phenomenon of superposition. If you have an n-dimensional
+      space and you want to represent independent features using perpendicular directions — so that adding one feature
+      does not interfere with any other — then the maximum number of features you can represent is exactly n. This is,
+      in fact, the mathematical definition of dimension (3Blue1Brown, 2024c).</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">But what happens if you relax the constraint slightly
+      and allow features to be represented by directions that are <em>nearly</em> perpendicular — say, between 89 and 91
+      degrees apart? In two or three dimensions, this makes almost no difference. But in high-dimensional spaces, the
+      answer changes dramatically. Sanderson demonstrates this with a simple Python experiment: in a 100-dimensional
+      space, you can cram 10,000 nearly perpendicular vectors — 100 times more than the number of dimensions — such that
+      all pairwise angles fall between 89 and 91 degrees (3Blue1Brown, 2024c).</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This result is a consequence of the
+      Johnson-Lindenstrauss lemma: the number of nearly perpendicular vectors you can fit into a space grows <strong
+        class="text-[var(--txt)]">exponentially</strong> with the number of dimensions. For large language models, this
+      has a profound implication. A model operating in a 12,288-dimensional space is not limited to storing 12,288
+      independent features. It can potentially store an astronomically larger number of features by using nearly
+      perpendicular directions, tolerating a small amount of noise in exchange for massive storage capacity
+      (3Blue1Brown, 2024c).</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This is the hypothesis of superposition: individual
+      features are not represented by single neurons lighting up, but by specific combinations of neurons — patterns
+      spread across the network. This may partially explain why model performance seems to scale so well with size: a
+      space with 10 times as many dimensions can store far more than 10 times as many independent ideas. It also
+      explains why these models are so difficult to interpret — the features are superimposed, overlapping, entangled.
+      Researchers in the field of mechanistic interpretability use tools called sparse autoencoders to try to
+      disentangle these superimposed features, and Anthropic (the company behind Claude) has published extensive
+      research on this problem (3Blue1Brown, 2024c; Bricken et al., 2023).</p>
+    <blockquote
+      class="border-l-4 border-[var(--blue)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(94,124,226,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">
+      Superposition is relevant to the culture war, but the relevance needs to be stated carefully. The common framing
+      that diffusion and language models are "just a collage of stolen images" or "just copying" does not match the
+      mechanism — the storage is distributed, overlapping, and geometric, not pixel-for-pixel. But superposition
+      <em>does not</em> mean the model has fully abstracted away from training data. Empirical research, most notably
+      Carlini et al. (2023) on Stable Diffusion, has shown that models can and do reproduce training images in
+      recognisable form, especially for images that appear many times in the training set. Nicholas Carlini and
+      colleagues extracted over a thousand near-verbatim training images from Stable Diffusion using targeted prompts.
+      The mathematics of superposition reduces how much of any given training example is retrievable from the model, but
+      it does not eliminate it. An honest mechanical account acknowledges both: the model is not a simple collage
+      machine <em>and</em> the model demonstrably memorises specific training examples under some conditions. The legal
+      implications of this are covered in the Legal Explanation.
+    </blockquote>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">6. Temperature and the Illusion of
+      Creativity</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">One of the most misunderstood features of LLMs is what
+      practitioners call "temperature." After the model produces its probability distribution over possible next words,
+      the softmax function that normalises those probabilities includes an adjustable constant T — the temperature — in
+      the denominator of its exponents (3Blue1Brown, 2024b). When T is low (approaching zero), the model always picks
+      the single most probable word, producing predictable, formulaic output. When T is high, it gives more weight to
+      less likely options, producing output that feels more "creative" but risks degenerating into nonsense.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Sanderson demonstrates this directly by generating
+      stories from GPT-3 at different temperature settings. At temperature zero, the model produces a derivative version
+      of Goldilocks — maximally predictable. At higher temperatures, the output begins more originally but quickly loses
+      coherence (3Blue1Brown, 2024b). This is not creativity in any human sense. It is a dial that controls how far from
+      the statistical centre the random sampler is allowed to wander. The "creativity" of a language model is,
+      mechanically, the degree to which it is permitted to select improbable words.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This matters for the cultural debate because the outputs
+      that people find most impressive — the surprisingly apt metaphor, the unexpected turn of phrase, the seemingly
+      insightful connection — are often the result of high-temperature sampling landing on a low-probability but
+      contextually coherent word. The model did not "think" of a clever metaphor. It rolled a dice weighted by
+      statistical patterns in its training data, and the dice happened to land on something that reads as clever to a
+      human audience. The mechanism is elegant, but it is not thought in the way humans mean the word.</p>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">7. The Practitioner's View: Linus
+      Torvalds at Open Source Summit</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Understanding the mechanism is one thing. Living with it
+      as a professional tool is another. At the Linux Foundation Open Source Summit in Seoul in November 2025, Linus
+      Torvalds — the creator of Linux and Git, and one of the most influential software engineers alive — was
+      interviewed by Dirk Hohndel, head of open source at Verizon. Asked whether AI is a bubble, a computing revolution,
+      or both, Torvalds answered directly: it is clearly both (Torvalds, 2025). Pressed to reconcile the apparent
+      tension, he elaborated that AI will change how most skilled jobs get done, while not being as revolutionary as the
+      marketing around it suggests.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This is not a contradiction — it is the mechanical
+      reality playing out in professional practice. A next-word predictor trained on the internet's entire corpus of
+      code <em>will</em> be extraordinarily good at predicting the next line of code in a given context. It
+      <em>will</em> change how programmers work. But it is still a next-word predictor. It does not understand system
+      architecture, it does not reason about trade-offs across a codebase, and it does not maintain a coherent design
+      vision over thousands of lines. Holding both truths simultaneously — the revolution is real, the limits are also
+      real — is not fence-sitting. It is engineering literacy.
+    </p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Torvalds made a sharp distinction when discussing "vibe
+      coding" — the practice of letting AI generate large amounts of code with minimal human oversight. He described
+      himself as "fairly positive" about vibe coding as an on-ramp into programming for people who otherwise could not
+      write code, while warning it would be "a horrible, horrible idea from a maintenance standpoint" for production
+      work (Torvalds, 2025, via Open Source Summit interview). The distinction maps directly onto the mechanical
+      architecture: local prediction is genuinely good, global coherence is genuinely absent, and pretending otherwise
+      is a recipe for code that is locally correct and globally unmaintainable.</p>
+    <blockquote
+      class="border-l-4 border-[var(--blue)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(94,124,226,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">
+      This is the mechanical explanation made flesh. A next-word predictor is optimised for local coherence — the next
+      token, the next line, the next function. It has no architectural mechanism for global coherence — the overall
+      system design, the architectural trade-offs, the long-term maintainability. Each prediction is locally correct and
+      globally blind. This is not a bug in the implementation. It is a direct consequence of what the model
+      fundamentally is: a function that predicts the next word.</blockquote>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">A January 2026 epilogue is worth recording honestly.
+      Torvalds quietly began using AI-assisted coding — specifically Google's Antigravity — for a personal
+      audio-processing project (AudioNoise), and openly credited the tool in the commit description. Commentators across
+      the software industry noted this as a significant pivot from his earlier public scepticism. The pivot does not
+      contradict the November 2025 position; Torvalds' framework was always "AI is a productivity tool, disastrous in
+      production without oversight, useful for smaller or experimental work." Using AI on a personal hobby project falls
+      squarely within the "fine" category he articulated. But the update is worth naming, because the rhetorical framing
+      of "even Torvalds is sceptical" is now incomplete — the more accurate framing is that Torvalds distinguishes use
+      cases carefully, and the distinction maps onto the mechanical architecture.</p>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">8. Why Programmers and Artists
+      Responded Differently</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">A widely-observed cultural asymmetry: the software
+      industry has largely embraced AI coding tools, while the art community has largely resisted AI image generation.
+      The same technology, built on the same mathematical mechanism, trained on the same kind of data — other people's
+      work, scraped, synthesised, and offered back as a service — has provoked opposite professional reactions. The
+      mechanical explanation is part of the story, but not all of it.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The mechanical part is real. In programming, the output
+      of an LLM is testable. Code either compiles or it does not. It either passes the test suite or it does not. The
+      programmer can verify the prediction, reject it if it is wrong, and use it as a productivity accelerator when it
+      is right. The next-word predictor is being used as a <em>tool</em> under human supervision. In image generation,
+      the output is the final product. There is no compiler, no test suite, no objective verification step. When a
+      diffusion model generates an image, the prediction <em>is</em> the work. The relationship between the prediction
+      and the professional is structurally different.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">But the mechanical account is incomplete. Other factors
+      matter, and honesty demands naming them. Programmers generally own their own tools and produce outputs for
+      employers on contractual terms; artists in the online commission economy depend on direct consumer relationships
+      and on stylistic differentiation that AI most directly threatens. Programmers have long operated in a culture of
+      remix, reuse, and open-source sharing; the art world has stronger norms around individual authorship and stylistic
+      ownership. Artists were, in many cases, able to identify specific AI tools trained on identifiable artists'
+      portfolios; programmers typically train on aggregated code where authorship attribution was already diffuse. The
+      mechanical testability argument explains part of the asymmetry. The economic and cultural asymmetries explain the
+      rest. Any account that relies purely on one of these dimensions is oversimplified.</p>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">9. The Bubble, the Capex, and the
+      Consumers Who Pay Without Using</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Torvalds' broader observation about the industry bears
+      repeating directly. He described himself as a believer in AI as a technology but not in the market and marketing
+      surrounding it. He predicted there will be a crash, and it will be ugly (Torvalds, 2025). This is not a contrarian
+      take. It is consistent with the view of economists and industry analysts working from the actual financial data,
+      which is worth laying out explicitly because it changes what the bubble argument actually licenses.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The scale is unprecedented. The five largest US
+      hyperscalers — Amazon, Alphabet, Microsoft, Meta, and Oracle — are collectively committing approximately <strong
+        class="text-[var(--txt)]">$660–690 billion in capital expenditure for 2026</strong>, nearly doubling the
+      $387–405 billion spent in 2025. Amazon leads at $200 billion, Alphabet at $175–185 billion, Microsoft at $120
+      billion+, Meta at $115–135 billion, Oracle at $50 billion (Futurum, 2026; DatacenterDynamics, 2026). J.P. Morgan
+      estimates total AI and data centre infrastructure investment will exceed $5 trillion over the next five years.
+      Achieving a 10% return on that investment would require approximately $650 billion in new annual revenue —
+      equivalent to every iPhone user paying an additional $34.72 monthly, or every Netflix subscriber contributing $180
+      per month, in perpetuity (J.P. Morgan, 2025, via Techstrong).</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The ratio of spend to revenue is where the bubble case
+      sharpens. In 2025, OpenAI reached approximately $13 billion in annualised revenue. Anthropic reached $9 billion by
+      year-end 2025 and $30 billion by April 2026. Both are growing rapidly. But combined, that is a fraction of the
+      hundreds of billions being invested annually in infrastructure. UBS data indicates that hyperscaler capex in 2026
+      will consume <strong class="text-[var(--txt)]">nearly 100% of operating cash flows</strong>, compared to a
+      ten-year average of 40% (Introl, 2026). Pivotal Research projects Alphabet's free cash flow will fall roughly 90%
+      in 2026 to $8.2 billion from $73.3 billion in 2025. Amazon is projected to run negative free cash flow of $17–28
+      billion. Meta's share-repurchase capacity is similarly constrained (CNBC, 2026; DatacenterDynamics, 2026). The
+      companies are not going broke — balance sheets remain strong — but the game-theoretic dynamic is unmistakable:
+      each is spending essentially all of its operating cash on AI infrastructure to avoid being left behind, and none
+      has a clear path to revenue that justifies the spend in the near term.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The historical comparison is telling. Morningstar and
+      Sparkline Capital's analysis finds that current AI capex already exceeds the relative-to-GDP peak of the dot-com
+      boom, and when adjusted for the shorter useful life of AI chips (approximately one year of competitive relevance
+      versus decades for physical infrastructure), it surpasses even the railroad buildout of the 1860s–1870s. Past
+      infrastructure booms have reliably produced overinvestment, excess capacity, and poor returns for the
+      infrastructure builders — even when the underlying technology delivered on its transformative promise. Telecom
+      stocks crashed 92% after the dot-com bust and remain 60% below their peak twenty-five years later, despite the
+      internet being exactly the transformation investors expected (Morningstar, 2025).</p>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">10. The Consumer Externality: How
+      Non-Users Pay for the Buildout</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Here is a dimension of the bubble that deserves careful
+      naming, because it complicates the usual framing of "AI users subsidise AI development." A large portion of the
+      real economic cost of the AI infrastructure buildout is being paid by consumers who have never used AI — and this
+      is the strongest version of the "AI affects people who don't use it" argument, considerably stronger than most
+      iterations it has taken in culture-war discourse.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The mechanism is memory fabrication capacity. High
+      Bandwidth Memory (HBM), used in AI accelerators like NVIDIA's Blackwell B200, consumes approximately three times
+      the wafer capacity per gigabyte compared to standard DRAM. Samsung, SK Hynix, and Micron — the three dominant
+      memory manufacturers — have reallocated capacity toward HBM because its margins are substantially higher than
+      consumer DDR5 (Network World, 2026; IDC, 2026). Micron exited the consumer memory market entirely in late 2025,
+      concentrating on enterprise and AI customers. SK Hynix reported its HBM, DRAM, and NAND capacity "essentially sold
+      out" for 2026.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The consumer impact is not speculative. According to
+      Tom's Hardware's price tracking and Counterpoint Research analysis, a 32GB DDR5 memory kit that sold for around
+      $87 in June 2025 was selling for $379 by January 2026 — a more than 4x increase within six months. 32GB DDR4 kits
+      went from $60–90 to $150–180 in the same period. Contract DRAM prices rose 50% in the first three quarters of
+      2025, another 30% in Q4, and a further 20% expected in early 2026. DRAM prices rose approximately 172% throughout
+      2025. Samsung raised 32GB DDR5 module contract pricing from $149 to $239 — a 60% hike in a single adjustment. The
+      industry has taken to calling the phenomenon "RAMageddon," and Micron's CEO has confirmed HBM and commodity memory
+      shortages will extend into 2027 at minimum (Tom's Hardware, 2026; Network World, 2026; IDC, 2026).</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This is a measurable, non-theoretical cost borne by
+      everyone buying a PC, laptop, smartphone, or any device with significant memory — whether or not they have ever
+      issued a single AI query. HP disclosed in its Q1 2026 earnings call that memory costs now account for 35% of PC
+      build materials, up from 15–18% the previous quarter. IDC projects the PC market will contract 10–11% in 2026 and
+      smartphones 8–9%, specifically because of the memory reallocation. Framework has issued public warnings about
+      continued price pressure, and Lenovo's CFO described the cost surge as "unprecedented." Memory manufacturers are
+      reallocating capacity away from consumer electronics toward AI infrastructure, and the consumer market is paying
+      the difference.</p>
+    <blockquote
+      class="border-l-4 border-[var(--blue)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(94,124,226,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">
+      This is the legitimate form of the "AI affects non-users" argument, and it is one of the few versions of it that
+      actually survives scrutiny. The consumer paying an extra $200 for their PC RAM is paying a real cost attributable
+      to the AI infrastructure buildout, without having personally used AI or made any choice that meaningfully
+      influenced the decision. But notice what this argument licenses: it licenses regulation of hyperscaler capital
+      allocation, antitrust scrutiny of memory-market concentration, industrial policy to expand fab capacity, and
+      consumer-protection considerations in how the capex race is financed. It does not license shaming individual AI
+      users. The user who generates a birthday card is not the one deciding to reallocate Micron's wafer capacity to
+      HBM. That decision is made in boardrooms by people pursuing 40%+ HBM margins. Misdirecting moral energy at
+      individual users actively weakens the case for the structural reforms that would address the externality.
+    </blockquote>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">11. What Survives the Correction
+    </h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The technology will likely survive a bubble correction.
+      The transformer architecture is real, the mathematics works, and the useful applications — code prediction,
+      translation, summarisation, search, accessibility — do not depend on the most speculative claims about near-term
+      AGI. Anthropic and OpenAI are both generating real revenue at growth rates essentially without precedent in
+      enterprise software history. Anthropic's jump from $1 billion ARR in January 2025 to $30 billion by April 2026 is,
+      by analyst reports, faster than any tracked software company has ever reached that scale (SaaStr, 2026; Sacra,
+      2026). This is not vapour. Real businesses are paying real money for real products that solve real problems.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">What will not survive a correction is the valuation
+      structure, the more speculative product promises, and the companies whose business models assume continued
+      exponential capability growth without commensurate cost reduction. The "AI wrappers" — companies providing thin
+      layers over foundational models with no moat and no defensible pricing power — will be the first casualties, as
+      Reddit's former CEO Yishan Wong predicted in late 2025 and as Semafor documented in early 2026. The consulting
+      firms rebranded as AI companies will follow. The startups that raised on vision without distribution will follow
+      them. The hyperscalers will absorb the pain via depreciation charges, debt-service costs, and constrained buyback
+      programs, but their core businesses are not at existential risk.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The durable externalities are worth naming because they
+      tell you what the buildout will leave behind even in the worst case. The SMR nuclear financing commitments
+      (covered in the Environmental Explanation) will produce firm carbon-free baseload power through the 2030s
+      regardless of what happens to AI revenue. The fibre networks, data centres, and cooling infrastructure being built
+      will be available for whatever compute workloads come next — the same way dot-com-era fibre made YouTube possible
+      in 2005. The trained research and engineering talent will not evaporate; it will move to the next wave of
+      applications. And the transformer architecture itself is now part of the permanent computational vocabulary.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Distinguishing the durable technology from the
+      speculative industry is what engineering literacy looks like in practice. Torvalds' framework — believer in the
+      technology, sceptic of the market — is not a contradiction. It is the only position the actual data supports. And
+      the implication for the culture war is the same as it has been throughout this essay series: the bubble is real,
+      the overinvestment is real, the consumer externalities are real, and <em>none of these facts produce a case for
+        shaming individual AI users</em>. They produce a case for regulation of institutional capital allocation, which
+      is where responsibility for the outcome actually sits.</p>
+
+    <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">12. The Verdict: A Machine That
+      Predicts, With Edge Cases</h2>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The anti-AI camp sometimes wants to say: "It's just
+      autocomplete. It's stupid. It can't do anything." This understates the capability — the mathematics of attention,
+      superposition, and high-dimensional embedding spaces produces results that are genuinely useful, often strikingly
+      so. The pro-AI camp sometimes wants to say: "It understands. It creates. It reasons." This overstates the
+      mechanism — it predicts the next word, stores facts as matrix products, and generates "creativity" by sampling
+      from a temperature-scaled probability distribution.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">By understanding the mechanism, we arrive at the honest
+      position: <strong class="text-[var(--txt)]">these models are powerful tools that are fundamentally shaped — and
+        limited — by what they are.</strong> They excel at local prediction. They fail at global coherence. They
+      compress knowledge through superposition in ways that are qualitatively different from either human memory or
+      database storage — but not so different that training-data memorisation is impossible, as Carlini et al. (2023)
+      demonstrated. And they produce outputs whose apparent creativity is a mathematical artefact of
+      probability-weighted sampling.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Three concurrent realities deserve acknowledgement.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4"><strong class="text-[var(--txt)]">Mechanically,</strong>
+      a large language model is a transformer — a stack of attention blocks and MLPs, containing hundreds of billions of
+      learned parameters, that converts input text into a probability distribution over possible next words. The
+      parameters encode compressed statistical patterns from the training data, stored via superposition in
+      high-dimensional vector spaces — with demonstrable but bounded memorisation of specific training examples. The
+      entire process is matrix multiplication, non-linear activation functions, and softmax normalisation. It is
+      mathematics, not magic, and not a clean separation from source material.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4"><strong class="text-[var(--txt)]">Practically,</strong>
+      the tool is genuinely useful for professionals who understand its limits. Torvalds' framework — fine for
+      exploration and on-ramps, disastrous in production without human oversight at system scale — maps to the
+      architecture. The practitioners who use it well treat it as a local-prediction accelerator, not a global-coherence
+      substitute.</p>
+    <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4"><strong class="text-[var(--txt)]">Culturally,</strong>
+      the market surrounding AI is showing bubble signatures, and a correction is likely. The technology will survive
+      the correction because the underlying capability is real. But the hype, the valuations, and the breathless
+      promises of imminent general intelligence — all of that is marketing built on top of a next-word predictor that
+      has specific, architectural strengths and specific, architectural limits. Understanding the mechanism is the
+      vaccine against both irrational fear and irrational hype.</p>
+
+    <!-- References -->
+    <div class="mt-12 pt-6 border-t border-[var(--border)]">
+      <h3 class="text-base font-bold mb-4 text-[var(--gold)]">References</h3>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">3Blue1Brown [Sanderson, G.]. (2024a).
+        Large language models explained briefly [Video]. YouTube. https://www.youtube.com/watch?v=LPZh9BOjkQs</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">3Blue1Brown [Sanderson, G.]. (2024b).
+        Transformers, the tech behind LLMs | Deep Learning Chapter 5 [Video]. YouTube.
+        https://www.youtube.com/watch?v=wjZofJX0v4M</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">3Blue1Brown [Sanderson, G.]. (2024c).
+        How might LLMs store facts | Deep Learning Chapter 7 [Video]. YouTube.
+        https://www.youtube.com/watch?v=9-Jl0dxWQs8</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Bricken, T., Templeton, A., Batson, J.,
+        Chen, B., Jermyn, A., et al. (2023). Towards monosemanticity: Decomposing language models with dictionary
+        learning. <em>Anthropic Transformer Circuits Thread</em>.
+        https://transformer-circuits.pub/2023/monosemantic-features</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Carlini, N., Hayes, J., Nasr, M.,
+        Jagielski, M., Sehwag, V., Tramèr, F., Balle, B., Ippolito, D., &amp; Wallace, E. (2023). Extracting training
+        data from diffusion models. <em>USENIX Security Symposium</em>. https://arxiv.org/abs/2301.13188</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Quach, K. (2025, November 18). Linus
+        Torvalds: Vibe coding is fine, but not for production. <em>The Register</em>.
+        https://www.theregister.com/2025/11/18/linus_torvalds_vibe_coding/</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Torvalds, L. (2025, November).
+        Interview with Dirk Hohndel at Linux Foundation Open Source Summit, Seoul. Full interview available on YouTube
+        via the Linux Foundation channel.</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Vaswani, A., Shazeer, N., Parmar, N.,
+        Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). Attention is all you need.
+        <em>Advances in Neural Information Processing Systems</em>, 30. https://arxiv.org/abs/1706.03762
+      </p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6"><em>Author's note: This essay draws on
+          prior informal synthesis by the author, corrected during the audit phase to cite the original Torvalds
+          interview (rather than reaction coverage) and to acknowledge the January 2026 update in Torvalds' personal AI
+          use.</em></p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">CNBC. (2026, February 6). Tech AI
+        spending approaches $700 billion in 2026, cash taking big hit. <em>CNBC</em>.
+        https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">DatacenterDynamics. (2026). Tech
+        giants' capital spending surging to $700 billion amid robust AI demand. <em>DCD</em>.</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Futurum Group. (2026, February 12). AI
+        capex 2026: The $690B infrastructure sprint. <em>Futurum Insights</em>.</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">IDC. (2026, February). Global memory
+        shortage crisis: Market analysis and the potential impact on the smartphone and PC markets in 2026. <em>IDC
+          Research</em>.</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Introl. (2026, February). Hyperscaler
+        capex hits $690B in 2026: Power bottleneck and free cash flow collapse. <em>Introl Blog</em>.</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">J.P. Morgan Chase. (2025). <em>AI
+          infrastructure analysis: The $650 billion annual revenue requirement</em>. Via Techstrong.ai reporting.</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Morningstar. (2025, November 3). Why
+        the AI spending spree could spell trouble for investors. <em>Morningstar Nordics</em>. Based on Wu, K. (2025),
+        Surviving the AI capex boom. Sparkline Capital.</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Network World. (2026, January 14).
+        Samsung warns of memory shortages driving industry-wide price surge in 2026.</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Sacra. (2026). Anthropic revenue,
+        valuation &amp; funding. https://sacra.com/c/anthropic/</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">SaaStr. (2026, April). Anthropic just
+        passed OpenAI in revenue. While spending 4x less to train their models.</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Semafor. (2026, February 13). The AI
+        bubble will burst. The Middle East isn't ready.</p>
+      <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Tom's Hardware. (2026, January). RAM
+        price tracking 2026: Daily lowest price on DDR5 and DDR4 memory. <em>Tom's Hardware</em>.</p>
     </div>
+  </article>
 
-  </div>
-</header>
-
-<style>
-  .nav-link { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);text-decoration:none;padding:6px 12px;border:1px solid transparent;border-radius:6px;transition:all .25s;white-space:nowrap; }
-  .nav-link:hover,.nav-link.active { color:var(--blue);border-color:var(--blue);background:rgba(94,124,226,.06); }
-  .mob-link { font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--mut);text-decoration:none;padding:12px 32px;border:1px solid var(--border);border-radius:10px;width:min(340px,80vw);text-align:center;transition:all .2s; }
-  .mob-link:hover,.mob-link.active { color:var(--blue);border-color:var(--blue);background:rgba(94,124,226,.07); }
-  .theme-opt { width:100%;text-align:left;padding:6px 10px;border-radius:6px;color:var(--mut);transition:all .2s; }
-  .theme-opt:hover { color:var(--txt);background:rgba(255,255,255,.04); }
-</style>
-
-<!-- HERO -->
-<section class="relative text-center px-6 py-16 overflow-hidden hero-glow">
-  <div class="font-mono text-[10px] tracking-[5px] uppercase text-[var(--green)] mb-4">3Blue1Brown · Primeagen · Linus Torvalds</div>
-  <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4">The Mechanical<br>Explanation</h1>
-  <p class="max-w-2xl mx-auto text-sm md:text-base leading-relaxed text-[var(--mut)] font-light">A technical walkthrough of how large language models actually work — from next-word prediction and transformer architecture to fact storage and superposition — followed by the practitioner's view from the programming trenches. Not magic. Not theft. Mathematics.</p>
-</section>
-
-<!-- ESSAY BODY -->
-<article class="max-w-[860px] mx-auto px-4 pb-16">
-
-  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">1. The Core Idea: Predicting the Next Word</h2>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Grant Sanderson, the mathematician behind 3Blue1Brown, opens his explanation of large language models with an analogy that cuts through the noise immediately (3Blue1Brown, 2024a). Imagine you find a movie script describing a conversation between a person and their AI assistant, but the AI's response has been torn off. If you had a machine that could look at any piece of text and sensibly predict what word comes next, you could reconstruct the missing dialogue one word at a time — feeding in what you have, reading off the prediction, appending it, and repeating. When you interact with a chatbot, this is exactly what is happening. A large language model is, at its core, a sophisticated mathematical function that takes a piece of text and assigns a probability to every possible next word (3Blue1Brown, 2024a).</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This is the first and most important thing to understand about the AI culture war: the technology at the centre of the debate is not a sentient mind, not a creative agent, and not a thief. It is a probability engine. It takes text in and produces a weighted list of what might come next. To build a chatbot from this engine, you lay out some introductory text describing a helpful AI assistant, append whatever the user has typed, and then let the model repeatedly predict what such an assistant would say next, one word at a time (3Blue1Brown, 2024a). The output is then presented to the user as a response.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Crucially, the model does not predict one word with certainty. It assigns probabilities across all possible next words. The output tends to look more natural if it is allowed to occasionally select less likely words at random, which means that even though the model itself is a deterministic mathematical function, the same prompt will typically produce a different answer each time it is run (3Blue1Brown, 2024a). This is not evidence of creativity or consciousness. It is a deliberate design feature — randomness injected into a probability distribution to avoid repetitive, stilted output.</p>
-  <blockquote class="border-l-4 border-[var(--blue)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(94,124,226,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">The distinction matters enormously for the culture war. When someone claims that AI "understands" or "creates" or "steals ideas," they are making a philosophical claim about a machine that does one thing: predict the statistically most plausible next word. Whether that prediction constitutes understanding is a separate question — one explored in the Philosophical Explanation — but the mechanism itself is pure mathematics.</blockquote>
-
-  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">2. Training: Tuning 175 Billion Dials</h2>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">How does the model learn to make these predictions? By processing an enormous amount of text, typically pulled from the internet. Sanderson puts the scale into perspective: for a human to read the amount of text used to train GPT-3, reading non-stop 24 hours a day, seven days a week, it would take over 2,600 years. Larger models since then have trained on far, far more (3Blue1Brown, 2024a).</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The way a language model behaves is entirely determined by continuous numerical values called parameters or weights. GPT-3 has 175 billion of them (3Blue1Brown, 2024b). No human ever deliberately sets those parameters. They begin at random — meaning the model initially outputs gibberish — and are then repeatedly refined based on example text. The training process works by passing all but the last word of an example into the model, comparing the model's prediction with the true last word, and then using an algorithm called backpropagation to tweak all 175 billion parameters so that the model becomes slightly more likely to choose the correct word next time (3Blue1Brown, 2024a).</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The scale of computation involved is staggering. Sanderson poses the question directly: if you could perform one billion additions and multiplications every single second, how long would it take to do all the operations involved in training the largest language models? A year? Ten thousand years? The answer is well over 100 million years (3Blue1Brown, 2024a). This astronomical computation is only made possible by GPUs — specialised computer chips optimised for running many operations in parallel.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">But raw pre-training is only part of the story. The goal of auto-completing a random passage of internet text is very different from the goal of being a helpful AI assistant. To bridge this gap, chatbots undergo a second phase of training called reinforcement learning with human feedback (RLHF). Human workers flag unhelpful or problematic outputs, and their corrections further adjust the model's parameters to make it more likely to produce responses that users actually prefer (3Blue1Brown, 2024a). This is how a next-word predictor becomes something that feels like a conversational partner.</p>
-
-  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">3. The Transformer: How Words Talk to Each Other</h2>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Prior to 2017, most language models processed text one word at a time — sequentially, from left to right. This made them slow and difficult to parallelise. Then a team of researchers at Google introduced a new architecture called the transformer, and everything changed. Transformers do not read text from start to finish; they process it all at once, in parallel (3Blue1Brown, 2024a). This is the architecture that put the "T" in GPT.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Sanderson's deeper technical series (3Blue1Brown, 2024b) walks through the transformer step by step. The very first thing that happens is that each word in the input text is converted into a vector — a long list of numbers. In GPT-3, each word becomes a list of 12,288 numbers (3Blue1Brown, 2024b). These vectors are not arbitrary; during training, the model learns to position words so that similar meanings correspond to nearby vectors in this high-dimensional space. The classic example: if you take the vector for "woman," subtract the vector for "man," and add the result to "uncle," you land very close to "aunt" (3Blue1Brown, 2024b; 3Blue1Brown, 2024c). The direction between "man" and "woman" encodes gender information, and the model has learned this structure entirely from data.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The sequence of word vectors then flows through two types of operation, repeated many times. The first is <strong class="text-[var(--txt)]">attention</strong> — the signature innovation of the transformer. Attention allows the vectors to "talk to each other," passing information back and forth so that each vector can update its meaning based on the words around it. The word "model" in the phrase "a machine learning model" is different from "model" in "a fashion model." The attention mechanism is what figures out which surrounding words are relevant to updating the meaning of which other words, and exactly how those meanings should change (3Blue1Brown, 2024b). Critically, all of this happens in parallel, not sequentially.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The second operation is the <strong class="text-[var(--txt)]">multi-layer perceptron (MLP)</strong>, sometimes called the feed-forward layer. Unlike attention, the vectors do not talk to each other here — each one goes through the same set of operations independently. The MLP can be thought of as asking a long list of questions about each vector and updating it based on the answers (3Blue1Brown, 2024b). Where attention is responsible for incorporating context, the MLP is where the model stores general knowledge — facts it learned during training.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">In GPT-3, the data flows through 96 iterations of these two blocks. By the end, the hope is that the final vector in the sequence has absorbed enough information — both from the surrounding context and from the knowledge baked into the model's weights — to produce an accurate prediction of what word comes next (3Blue1Brown, 2024b). A final matrix called the unembedding matrix converts this last vector into a probability distribution over all 50,257 possible tokens in the vocabulary. The result is then passed through a softmax function, which normalises the raw scores into valid probabilities (3Blue1Brown, 2024b).</p>
-
-  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">4. Where Do Facts Live? The Michael Jordan Problem</h2>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">If you feed a large language model the prompt "Michael Jordan plays the sport of ___" and it correctly predicts "basketball," then somewhere inside its hundreds of billions of parameters, the model has baked in a specific fact about a specific person. Where does that fact live? Sanderson's chapter on this question (3Blue1Brown, 2024c) draws on research from Google DeepMind to provide a partial answer: facts appear to be stored primarily inside the multi-layer perceptrons.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The mechanism works through a sequence of matrix multiplications with a non-linear function sandwiched in between. The first matrix — the "up projection" — takes the vector being processed and multiplies it by a very large matrix whose rows can be thought of as questions. Each row computes a dot product with the input vector, effectively asking "how much does this vector align with a particular direction in the embedding space?" For example, one row might encode the direction "first name Michael + last name Jordan." The dot product with that row will be high if and only if the vector represents the full name Michael Jordan, and low otherwise (3Blue1Brown, 2024c).</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The result then passes through a non-linear function called ReLU — the rectified linear unit — which simply clips all negative values to zero and leaves positive values unchanged. This acts as an AND gate: the output is positive only when both conditions (first name Michael AND last name Jordan) are met simultaneously. Without this non-linearity, a high score for "Michael Phelps" or "Alexis Jordan" would also partially trigger the response, because a purely linear operation cannot distinguish between partial and full matches (3Blue1Brown, 2024c).</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The second matrix — the "down projection" — then takes the result and maps it back to the embedding space. Its columns determine what gets added to the vector when a particular neuron is active. If the first column encodes the direction "basketball," then whenever the Michael Jordan neuron fires, the basketball direction gets added to the output. The model has thereby stored and retrieved a specific fact: Michael Jordan → basketball (3Blue1Brown, 2024c). In GPT-3, each MLP block contains just under 50,000 of these neurons, and there are 96 such blocks, giving the MLPs a total of approximately <strong class="text-[var(--txt)]">116 billion parameters</strong> — roughly two-thirds of the entire network (3Blue1Brown, 2024c).</p>
-  <blockquote class="border-l-4 border-[var(--blue)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(94,124,226,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">This is a toy example, and Sanderson is explicit about that. Real neurons rarely represent a single clean feature like "Michael Jordan." But the mathematics of the toy example — dot products as pattern detectors, ReLU as a gate, column vectors as stored associations — is real. The computation is exactly what happens inside every MLP block. The question is only how many features each neuron is actually encoding simultaneously.</blockquote>
-
-  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">5. Superposition: Why the Model Knows More Than It "Should"</h2>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This brings us to perhaps the most thought-provoking mathematical insight in the entire 3Blue1Brown series: the phenomenon of superposition. If you have an n-dimensional space and you want to represent independent features using perpendicular directions — so that adding one feature does not interfere with any other — then the maximum number of features you can represent is exactly n. This is, in fact, the mathematical definition of dimension (3Blue1Brown, 2024c).</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">But what happens if you relax the constraint slightly and allow features to be represented by directions that are <em>nearly</em> perpendicular — say, between 89 and 91 degrees apart? In two or three dimensions, this makes almost no difference. But in high-dimensional spaces, the answer changes dramatically. Sanderson demonstrates this with a simple Python experiment: in a 100-dimensional space, you can cram 10,000 nearly perpendicular vectors — 100 times more than the number of dimensions — such that all pairwise angles fall between 89 and 91 degrees (3Blue1Brown, 2024c).</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This result is a consequence of the Johnson-Lindenstrauss lemma: the number of nearly perpendicular vectors you can fit into a space grows <strong class="text-[var(--txt)]">exponentially</strong> with the number of dimensions. For large language models, this has a profound implication. A model operating in a 12,288-dimensional space is not limited to storing 12,288 independent features. It can potentially store an astronomically larger number of features by using nearly perpendicular directions, tolerating a small amount of noise in exchange for massive storage capacity (3Blue1Brown, 2024c).</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This is the hypothesis of superposition: individual features are not represented by single neurons lighting up, but by specific combinations of neurons — patterns spread across the network. This may partially explain why model performance seems to scale so well with size: a space with 10 times as many dimensions can store far, far more than 10 times as many independent ideas (3Blue1Brown, 2024c). It also explains why these models are so difficult to interpret — the features are superimposed, overlapping, entangled. Researchers in the field of mechanistic interpretability use tools called sparse autoencoders to try to disentangle these superimposed features, and Anthropic (the company behind Claude) has published extensive research on this problem (3Blue1Brown, 2024c).</p>
-  <blockquote class="border-l-4 border-[var(--blue)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(94,124,226,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">Superposition is significant for the culture war because it undermines the common critique that AI merely "memorises and regurgitates." If the model were simply storing training data in retrievable form, you would expect a one-to-one mapping between neurons and facts. Instead, the mathematical evidence suggests that the model compresses and distributes knowledge across overlapping patterns in a way that is qualitatively different from database storage — and qualitatively different from simple copying.</blockquote>
-
-  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">6. Temperature and the Illusion of Creativity</h2>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">One of the most misunderstood features of LLMs is what practitioners call "temperature." After the model produces its probability distribution over possible next words, the softmax function that normalises those probabilities includes an adjustable constant T — the temperature — in the denominator of its exponents (3Blue1Brown, 2024b). When T is low (approaching zero), the model always picks the single most probable word, producing predictable, formulaic output. When T is high, it gives more weight to less likely options, producing output that feels more "creative" but risks degenerating into nonsense.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Sanderson demonstrates this directly by generating stories from GPT-3 at different temperature settings. At temperature zero, the model produces a derivative version of Goldilocks — maximally predictable. At higher temperatures, the output begins more originally but quickly loses coherence (3Blue1Brown, 2024b). This is not creativity in any human sense. It is a dial that controls how far from the statistical centre the random sampler is allowed to wander. The "creativity" of a language model is, mechanically, the degree to which it is permitted to select improbable words.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">This matters for the cultural debate because the outputs that people find most impressive — the surprisingly apt metaphor, the unexpected turn of phrase, the seemingly insightful connection — are often the result of high-temperature sampling landing on a low-probability but contextually coherent word. The model did not "think" of a clever metaphor. It rolled a dice weighted by statistical patterns in its training data, and the dice happened to land on something that reads as clever to a human audience. The mechanism is elegant, but it is not thought.</p>
-
-  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">7. The Practitioner's View: Linus Torvalds and ThePrimeagen</h2>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Understanding the mechanism is one thing. Living with it as a professional tool is another. In a widely discussed conversation, Linus Torvalds — the creator of Linux and one of the most influential software engineers alive — was asked whether modern generative AI is a bubble, a computing revolution, or both. His answer was immediate: it is clearly both (Torvalds, 2025, as discussed in ThePrimeagen, 2025). ThePrimeagen, a popular programming YouTuber and former Netflix engineer, reacted with frustration at what he saw as fence-sitting, pointing out an apparent contradiction: Torvalds simultaneously said AI would change how most skilled jobs get done, and also that it is not as revolutionary as people make it out to be.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">But this is not a contradiction — it is the mechanical reality playing out in professional practice. Torvalds' position maps directly onto the technical architecture described above. A next-word predictor trained on the internet's entire corpus of code <em>will</em> be extraordinarily good at predicting the next line of code in a given context. It <em>will</em> change how programmers work. But it is still a next-word predictor. It does not understand system architecture, it does not reason about trade-offs across a codebase, and it does not maintain a coherent design vision over thousands of lines. The revolution is real; the limits are also real. Holding both truths simultaneously is not fence-sitting — it is engineering literacy.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Torvalds made this point sharply when discussing "vibe coding" — the practice of letting AI generate large amounts of code with minimal human oversight. His assessment: AI is great for getting into programming, but it is going to be a horrible thing to maintain (Torvalds, 2025, via ThePrimeagen, 2025). ThePrimeagen expanded on this with a devastating anecdote from a colleague whose team had been required to vibe-code at speed. Every individual pull request looked correct. Every small decision by the AI was functionally good. The code at each tiny step appeared right. But when the team zoomed out and looked at the system as a whole, the result was, in the colleague's words, the worst code he had ever seen in his life (ThePrimeagen, 2025).</p>
-  <blockquote class="border-l-4 border-[var(--blue)] pl-5 py-3 my-4 rounded-r-xl bg-[rgba(94,124,226,.04)] text-[14px] leading-[1.7] text-[#a0a4c0] italic">This is the mechanical explanation made flesh. A next-word predictor is optimised for local coherence — the next token, the next line, the next function. It has no mechanism for global coherence — the overall system design, the architectural trade-offs, the long-term maintainability. Each prediction is locally correct and globally blind. This is not a bug in the implementation. It is a direct consequence of what the model fundamentally is: a function that predicts the next word.</blockquote>
-
-  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">8. The Dichotomy of Two Worlds</h2>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">ThePrimeagen raises a cultural observation that maps onto the mechanical reality in a striking way: the artist community is furious about AI, while the programming community has largely embraced it. The same technology, built on the same mechanism, trained on the same kind of data — other people's work, scraped from the internet, synthesised, and sold back to users — provokes opposite reactions in two creative professions (ThePrimeagen, 2025). ThePrimeagen finds this deeply strange, and challenges the common explanation that "artistry requires more originality" than programming.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The mechanical explanation offers a lens for understanding this dichotomy. In programming, the output of an LLM is testable. Code either compiles or it does not. It either passes the test suite or it does not. The programmer can verify the prediction, reject it if it is wrong, and use it as a productivity accelerator when it is right. The next-word predictor is being used as a <em>tool</em> — one that the practitioner controls, evaluates, and overrides. In art, the output is the final product. There is no compiler, no test suite, no objective verification step. When an AI generates an image or a piece of music, the prediction <em>is</em> the work. The artist is not accelerated; the artist is replaced. The mechanism is identical, but the relationship between the prediction and the professional is fundamentally different.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">ThePrimeagen also highlights the chess analogy, crediting it as one of the best points made in the discussion. Chess has never been more computationally solved than it is today — a phone app can beat Magnus Carlsen — yet chess has never been more popular. The median player may be irrelevant against an engine, but the best human players are more celebrated, more watched, and more valued than ever (ThePrimeagen, 2025). The prediction: the same will happen with creative professions. The average photographer will be pushed out of business by AI-generated imagery. But the truly exceptional photographers — the ones with a genuine eye for capturing a moment — will become <em>more</em> valuable, because audiences saturated with AI slop will hunger for human ingenuity and the authenticity of a real human vision.</p>
-
-  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">9. The Bubble, the Crash, and the Genie</h2>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Torvalds' final observation is perhaps the most important for the broader culture war. He describes himself as a huge believer in AI as a technology, but not a believer in the market and marketing surrounding it. He predicts that there will be a crash, and that it will be ugly (Torvalds, 2025, via ThePrimeagen, 2025). This directly echoes the environmental essay's distinction between the technology and the industry: the next-word predictor is genuinely useful; the venture-capital-fuelled gold rush around it is a bubble. Both things are true simultaneously.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">On the question of training data — whether it constitutes theft to train a model on publicly available code and art — Torvalds' response is blunt: "That's reality. Deal with it. That genie is out of the bottle. You're not getting it back" (Torvalds, 2025, via ThePrimeagen, 2025). ThePrimeagen notes that this position, while pragmatically accurate, is also one that the art community would find outrageous. The question of whether scraping and synthesising other people's work constitutes theft is explored fully in the Legal and Ethical Explanations. But Torvalds' point is a mechanical one, not a moral one: the models exist, the capability is real, and no policy intervention will uninvent the transformer architecture.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">ThePrimeagen's own prediction for the near future is characteristically direct. For the next ten years, while AI transitions from infancy into something reliable, the biggest visible impact will be an explosion of low-quality, AI-generated content — "hand-crafted, free-range, beautiful, absolute horseshit content at all times everywhere" (ThePrimeagen, 2025). The mechanism explains why: a next-word predictor trained on the internet's median content will, by definition, produce median content. It will be fluent, it will be grammatically correct, and it will be statistically plausible. But it will also be derivative, undifferentiated, and architecturally incoherent at scale — exactly what Torvalds warned about with vibe coding.</p>
-
-  <h2 class="text-2xl font-extrabold tracking-tight mt-10 mb-3 text-[var(--txt)]">10. The Verdict: A Machine That Predicts, Not a Mind That Thinks</h2>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">The anti-AI camp wants to say: "It's just autocomplete. It's stupid. It can't do anything." They are wrong about the capability — the mathematics of attention, superposition, and high-dimensional embedding spaces produces results that are genuinely useful, often startlingly so. The pro-AI camp wants to say: "It understands. It creates. It reasons." They are wrong about the mechanism — it predicts the next word, stores facts as matrix products, and generates "creativity" by rolling weighted dice.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">By understanding the mechanism, we arrive at the only honest position: <strong class="text-[var(--txt)]">these models are extraordinarily powerful tools that are fundamentally limited by what they are.</strong> They excel at local prediction — the next word, the next line, the next plausible continuation. They fail at global coherence — sustained reasoning, architectural vision, long-term consistency. They compress knowledge through superposition in ways that are qualitatively different from either human memory or database storage. And they produce outputs whose apparent creativity is a mathematical artefact of temperature-controlled sampling from a probability distribution.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4">Three concurrent realities must be acknowledged:</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4"><strong class="text-[var(--txt)]">Mechanically,</strong> a large language model is a transformer — a stack of attention blocks and MLPs, containing hundreds of billions of learned parameters, that converts input text into a probability distribution over possible next words. The parameters encode compressed statistical patterns from the training data, stored via superposition in high-dimensional vector spaces. The entire process is matrix multiplication, non-linear activation functions, and softmax normalisation. It is mathematics, not magic.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4"><strong class="text-[var(--txt)]">Practically,</strong> the tool is genuinely transformative for professionals who understand its limits. Torvalds and ThePrimeagen both agree: AI will make people more productive, it is great for small-scale code prediction, and it is a disaster when used without human oversight at system-level scale. The chess analogy holds — the median practitioner is threatened, but the best practitioners will become more valuable as audiences learn to distinguish human ingenuity from statistical median.</p>
-  <p class="text-[15px] leading-[1.8] text-[var(--mut)] mb-4"><strong class="text-[var(--txt)]">Culturally,</strong> the market surrounding AI is a bubble, and the bubble will crash. The technology will survive the crash because the transformer architecture is real and the mathematics works. But the hype, the valuations, the breathless promises of imminent artificial general intelligence — all of that is marketing built on top of a next-word predictor. Understanding the mechanism is the vaccine against both irrational fear and irrational hype.</p>
-
-  <!-- References -->
-  <div class="mt-12 pt-6 border-t border-[var(--border)]">
-    <h3 class="text-base font-bold mb-4 text-[var(--gold)]">References</h3>
-    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">3Blue1Brown [Sanderson, G.]. (2024a). Large language models explained briefly [Video]. YouTube. https://www.youtube.com/watch?v=LPZh9BOjkQs</p>
-    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">3Blue1Brown [Sanderson, G.]. (2024b). Transformers, the tech behind LLMs | Deep Learning Chapter 5 [Video]. YouTube. https://www.youtube.com/watch?v=wjZofJX0v4M</p>
-    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">3Blue1Brown [Sanderson, G.]. (2024c). How might LLMs store facts | Deep Learning Chapter 7 [Video]. YouTube. https://www.youtube.com/watch?v=9-Jl0dxWQs8</p>
-    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">ThePrimeagen. (2025). Reacting to Linus Torvalds on AI [Video/Livestream]. YouTube.</p>
-    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Torvalds, L. (2025). Interview on AI, vibe coding, and the future of programming [As discussed in ThePrimeagen, 2025].</p>
-    <p class="text-[12px] leading-[1.6] text-[var(--dim)] mb-2 pl-6 -indent-6">Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). Attention is all you need. <em>Advances in Neural Information Processing Systems</em>, 30. https://arxiv.org/abs/1706.03762</p>
-  </div>
-</article>
-
-<footer class="text-center px-6 py-8 font-mono text-[9px] text-[var(--dim)] tracking-[1px] border-t border-[var(--border)] max-w-[1340px] mx-auto">
-  The AI Culture War — A Complete Data Story · Mechanical Explanation · Compiled April 2026
-</footer>
+  <footer
+    class="text-center px-6 py-8 font-mono text-[9px] text-[var(--dim)] tracking-[1px] border-t border-[var(--border)] max-w-[1340px] mx-auto">
+    The AI Culture War — A Complete Data Story · Mechanical Explanation · Compiled April 2026
+  </footer>
 </body>
+
 </html>
