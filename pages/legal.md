@@ -1,8 +1,11 @@
 # The AI Culture War — Legal Explanation
 
-*How the law is actually responding to AI, examined honestly, including where cases have gone against AI developers. The consistent pattern: the law directs responsibility at institutional actors, not at end users. This is not a claim that AI is legal or that its use is neutral. It is a description of where the legal system has been placing accountability, which has direct implications for how the ethical debate should be structured.*
+**Copyright · Fair Use · Training Data · EU AI Act · Institutional Responsibility**
 
----
+## The Legal Explanation
+
+How the law is actually responding to AI — examined honestly, including where cases have gone against AI developers. The consistent pattern: the law directs responsibility at institutional actors, not at end users. This is not a claim that AI is legal or that its use is neutral. It is a description of where the legal system has been placing accountability, which has direct implications for how the ethical debate should be structured.
+
 ## 1. Publicly Accessible Does Not Mean Public Domain
 
 This is the single most important legal distinction in the entire AI debate, and it is the one most frequently misunderstood by both sides. Being publicly accessible — viewable without a login, password, or paywall — does not make content "public domain" or "free for unrestricted use." Public domain means the copyright has expired, been forfeited, or never existed (such as most US government works, or works published before 1929 in the United States as of 2025). Publicly accessible simply means you can view it without barriers. The vast majority of images on the open web are still copyrighted, even though they are easy to see or download. Copyright protects original works automatically upon creation. No registration or notice is required.
@@ -21,47 +24,33 @@ The technical reality complicates both positions. Diffusion models do not store 
 
 ## 3. Landmark Cases — An Honest Reading
 
-**The New York Times v. OpenAI & Microsoft**
+*   **The New York Times v. OpenAI & Microsoft**
+    Filed December 2023 · US District Court, SDNY · Ongoing
+    The NYT alleges that OpenAI and Microsoft used millions of its articles to train GPT models without permission or payment, and that the models can reproduce NYT content near-verbatim when prompted. The case introduced "memorisation" — the documented phenomenon of LLMs reproducing training data verbatim — as evidence that training is not merely transformative. Widely considered one of the most consequential AI copyright cases in progress, with potential damages that could reach billions if the court rules for the NYT on the memorisation-based infringement theory. The defendants are OpenAI and Microsoft. End users of ChatGPT are not defendants.
 
-*Filed December 2023 · US District Court, SDNY · Ongoing*
+*   **Getty Images v. Stability AI (UK)**
+    Filed January 2023 · UK High Court · Judgment 4 November 2025
+    This case is frequently mischaracterised in coverage, so the facts matter. Getty initially brought five claims against Stability AI: primary copyright infringement (based on scraping and model training), a secondary copyright claim, database rights infringement, trademark infringement, and passing off. **During trial, Getty abandoned the primary copyright and database rights claims** because they could not establish that training occurred in the UK — a jurisdictional gap, not a merits determination. The court therefore never ruled on whether training itself constitutes infringement. The court did rule on the narrow secondary claim, holding that model weights are not an "infringing copy" because they do not store reproducible images. Getty **partially won on the trademark claim**: Stable Diffusion outputs displaying the Getty watermark were found to constitute limited trademark infringement for certain early versions. The court assigned liability to Stability AI as the developer with control over the dataset, not to end users generating images. As Paul Weiss, DLA Piper, and Mayer Brown have all noted in analyses, the judgment provides "very little clarity on the legality of AI models being trained on copyright works." The core question remains open in the UK pending future cases or legislation.
 
-The NYT alleges that OpenAI and Microsoft used millions of its articles to train GPT models without permission or payment, and that the models can reproduce NYT content near-verbatim when prompted. The case introduced "memorisation" — the documented phenomenon of LLMs reproducing training data verbatim — as evidence that training is not merely transformative. Widely considered one of the most consequential AI copyright cases in progress, with potential damages that could reach billions if the court rules for the NYT on the memorisation-based infringement theory. The defendants are OpenAI and Microsoft. End users of ChatGPT are not defendants.
+*   **Thomson Reuters v. Ross Intelligence**
+    Summary judgment February 2025 · D. Del. · Ruling AGAINST the AI developer
+    Thomson Reuters sued AI legal-research startup Ross Intelligence for training on Westlaw headnotes. **The court granted summary judgment to Thomson Reuters on direct copyright infringement**, rejecting Ross's fair-use defence. Judge Bibas found that Ross's use was not transformative — it built a competing legal-research product that directly substituted for Westlaw — and that the fourth fair-use factor (market effect) weighed decisively against Ross. This is the first major US ruling substantively against an AI developer on the training-data fair-use question. The court was careful to note that the ruling concerns non-generative AI trained on a direct competitor's protected content; broader generative-AI cases may reach different outcomes. But the ruling eliminates any assumption that AI training automatically qualifies as fair use. Again, Ross Intelligence was the defendant, not any user of Ross's product.
 
-**Getty Images v. Stability AI (UK)**
+*   **Andersen et al. v. Stability AI, Midjourney & DeviantArt**
+    Filed January 2023 · Class Action · Ongoing after 2024 amendments
+    A class action brought by artists including Sarah Andersen, Kelly McKernan, and Karla Ortiz. The court's 2023 partial dismissal clarified that style itself is not copyrightable under current law — copyright protects specific expression, not method or aesthetic approach. However, the plaintiffs filed amended complaints that survived further motions to dismiss in 2024, with the case proceeding on claims including direct infringement based on specific work reproduction, intermediate copies made during training, DMCA violations regarding copyright management information, and unjust enrichment. The case is live and the defendants face substantial ongoing exposure. The defendants are Stability AI, Midjourney, and DeviantArt — not users of their products.
 
-*Filed January 2023 · UK High Court · Judgment 4 November 2025*
+*   **Bartz v. Anthropic**
+    Settlement announced 2025 · N.D. Cal.
+    A class-action brought by authors against Anthropic over the use of copyrighted books in Claude's training data. In June 2025, Judge Alsup issued a mixed summary-judgment ruling: training on lawfully acquired copies was fair use, but Anthropic's use of pirated copies from shadow libraries was not. Anthropic subsequently announced a substantial settlement with the plaintiff class. The ruling is notable as one of the clearest judicial statements that fair-use analysis depends on how the training data was obtained — not just what was done with it afterward. The defendant was Anthropic. Users of Claude were not named parties.
 
-This case is frequently mischaracterised in coverage, so the facts matter. Getty initially brought five claims against Stability AI: primary copyright infringement (based on scraping and model training), a secondary copyright claim, database rights infringement, trademark infringement, and passing off. **During trial, Getty abandoned the primary copyright and database rights claims** because they could not establish that training occurred in the UK — a jurisdictional gap, not a merits determination. The court therefore never ruled on whether training itself constitutes infringement. The court did rule on the narrow secondary claim, holding that model weights are not an "infringing copy" because they do not store reproducible images. Getty **partially won on the trademark claim**: Stable Diffusion outputs displaying the Getty watermark were found to constitute limited trademark infringement for certain early versions. The court assigned liability to Stability AI as the developer with control over the dataset, not to end users generating images. As Paul Weiss, DLA Piper, and Mayer Brown have all noted in analyses, the judgment provides "very little clarity on the legality of AI models being trained on copyright works." The core question remains open in the UK pending future cases or legislation.
+*   **Thaler v. Perlmutter (US Copyright Office)**
+    Decided August 2023 · DC Circuit · Affirmed 2025
+    Stephen Thaler attempted to register copyright in an AI-generated artwork on behalf of his AI system "DABUS." The US Copyright Office refused, and the DC Circuit upheld the refusal: copyright requires human authorship. This ruling addresses AI outputs, not training — it does not say training is "stealing." It says AI-generated works without sufficient human creative input cannot receive copyright protection. The question of how much human involvement is sufficient to qualify for copyright remains unresolved.
 
-**Thomson Reuters v. Ross Intelligence**
-
-*Summary judgment February 2025 · D. Del. · Ruling AGAINST the AI developer*
-
-Thomson Reuters sued AI legal-research startup Ross Intelligence for training on Westlaw headnotes. **The court granted summary judgment to Thomson Reuters on direct copyright infringement**, rejecting Ross's fair-use defence. Judge Bibas found that Ross's use was not transformative — it built a competing legal-research product that directly substituted for Westlaw — and that the fourth fair-use factor (market effect) weighed decisively against Ross. This is the first major US ruling substantively against an AI developer on the training-data fair-use question. The court was careful to note that the ruling concerns non-generative AI trained on a direct competitor's protected content; broader generative-AI cases may reach different outcomes. But the ruling eliminates any assumption that AI training automatically qualifies as fair use. Again, Ross Intelligence was the defendant, not any user of Ross's product.
-
-**Andersen et al. v. Stability AI, Midjourney & DeviantArt**
-
-*Filed January 2023 · Class Action · Ongoing after 2024 amendments*
-
-A class action brought by artists including Sarah Andersen, Kelly McKernan, and Karla Ortiz. The court's 2023 partial dismissal clarified that style itself is not copyrightable under current law — copyright protects specific expression, not method or aesthetic approach. However, the plaintiffs filed amended complaints that survived further motions to dismiss in 2024, with the case proceeding on claims including direct infringement based on specific work reproduction, intermediate copies made during training, DMCA violations regarding copyright management information, and unjust enrichment. The case is live and the defendants face substantial ongoing exposure. The defendants are Stability AI, Midjourney, and DeviantArt — not users of their products.
-
-**Bartz v. Anthropic**
-
-*Settlement announced 2025 · N.D. Cal.*
-
-A class-action brought by authors against Anthropic over the use of copyrighted books in Claude's training data. In June 2025, Judge Alsup issued a mixed summary-judgment ruling: training on lawfully acquired copies was fair use, but Anthropic's use of pirated copies from shadow libraries was not. Anthropic subsequently announced a substantial settlement with the plaintiff class. The ruling is notable as one of the clearest judicial statements that fair-use analysis depends on how the training data was obtained — not just what was done with it afterward. The defendant was Anthropic. Users of Claude were not named parties.
-
-**Thaler v. Perlmutter (US Copyright Office)**
-
-*Decided August 2023 · DC Circuit · Affirmed 2025*
-
-Stephen Thaler attempted to register copyright in an AI-generated artwork on behalf of his AI system "DABUS." The US Copyright Office refused, and the DC Circuit upheld the refusal: copyright requires human authorship. This ruling addresses AI outputs, not training — it does not say training is "stealing." It says AI-generated works without sufficient human creative input cannot receive copyright protection. The question of how much human involvement is sufficient to qualify for copyright remains unresolved.
-
-**Kneschke v. LAION (Hamburg, Germany)**
-
-*First-instance ruling 2024 · Hamburg Regional Court · On appeal*
-
-A German photographer challenged the LAION dataset's inclusion of his copyrighted images. The Hamburg Regional Court held in 2024 that LAION's activity fell within the EU's text-and-data-mining exception for scientific research under Article 3 of the DSM Directive. The ruling is significant but narrow: it addressed dataset creation for research, not the subsequent use of that dataset by commercial AI developers. The question of whether commercial downstream use can free-ride on research-exception data collection remains contested.
+*   **Kneschke v. LAION (Hamburg, Germany)**
+    First-instance ruling 2024 · Hamburg Regional Court · On appeal
+    A German photographer challenged the LAION dataset's inclusion of his copyrighted images. The Hamburg Regional Court held in 2024 that LAION's activity fell within the EU's text-and-data-mining exception for scientific research under Article 3 of the DSM Directive. The ruling is significant but narrow: it addressed dataset creation for research, not the subsequent use of that dataset by commercial AI developers. The question of whether commercial downstream use can free-ride on research-exception data collection remains contested.
 
 ## 4. The EU AI Act — Comprehensive Regulation Aimed at Developers
 
@@ -104,8 +93,6 @@ What can be said with confidence based on existing decisions: **publicly accessi
 And most importantly for the broader cultural debate: **legal accountability has concentrated on developers and deployers, not end users**. Every substantive case, every regulatory framework, every proposed liability scheme has made the same structural choice: the institutional actors who built and deployed the systems are the accountable parties. This is not a coincidence, and it is not a peculiarity of AI. It is how the legal system handles technology with diffuse consumer use and concentrated production — the same way it handles automobile safety (manufacturer liability, not driver liability for design defects), pharmaceutical safety (company liability, not patient liability for drug defects), and data protection (data-controller liability, not user liability for platform violations).
 
 The law, in short, has already made the judgement the Ethical Explanation defends on separate grounds: that the appropriate locus of accountability for a technology with diffuse consumer use is the institutional actors upstream, not the individual user downstream. Whether any reader finds this dispositive for the ethical question is their call. But it should at least clarify that the position "individual AI users are morally culpable agents who deserve judgement" is running contrary to how every developed legal system has chosen to allocate responsibility in this domain. The legal system could be wrong to have made that choice. But the choice has been made, and it has been made consistently, and anyone arguing for individual-user moral loading is arguing against the weight of the legal tradition.
-
-References
 
 ### References
 

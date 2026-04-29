@@ -1,8 +1,11 @@
 # The AI Culture War — Ethical Explanation
 
-*The default for any technology-adoption choice is moral neutrality. Shifting that default requires demonstrated, proportionate harm, and the burden of proof sits with whoever wants to load the choice morally. This essay examines the serious harm arguments against AI use and against AI refusal, engages each on its strongest form, and asks whether they succeed in moving the default. Not anti-artist. Not pro-tech. Pro-autonomy.*
+**Autonomy · Default · Harm · Scope · Effort · Complicity**
 
----
+## The Ethical Explanation
+
+The default for any technology-adoption choice is moral neutrality. Shifting that default requires demonstrated, proportionate harm — and the burden of proof sits with whoever wants to load the choice morally. This essay examines the serious harm arguments against AI use and against AI refusal, engages each on its strongest form, and asks whether they succeed in moving the default. Not anti-artist. Not pro-tech. Pro-autonomy.
+
 ## 1. The Default and Who Has to Move It
 
 Most technology-adoption choices sit in a default zone of moral neutrality. Using or not using a smartphone, a dishwasher, a car, a credit card, a search engine, a streaming service — none of these is treated as morally loaded absent specific aggravating factors. The default is not "all technology is good" or "all technology is harmless." The default is that the individual choice to adopt or refuse is not itself a moral question, even though the technology may have ethical dimensions that are addressable through other means (regulation, corporate accountability, collective bargaining, personal boycotts where warranted). Loading every consumer choice morally would make ordinary life impossible.
@@ -98,8 +101,6 @@ The default for technology-adoption choices is moral neutrality. That default ca
 This is not pro-AI. The corporate practices that scraped training data without consent are a genuine ethical problem and they warrant regulation, litigation, and pressure. Labour displacement is real and warrants collective bargaining, just-transition policy, and industrial protection. Effects on human cognitive practice are worth monitoring and discussing at the level of education and cultural design. These are serious questions and they are not resolved by the essay. What the essay resolves is the narrower question of whether the individual user deserves moral judgement for their adoption choice. They do not. Neither does the non-user. Both sit within the default zone of autonomous consumer choice that protects most of ordinary life from being transformed into a constant moral performance.
 
 A thoughtful person can dislike AI output, refuse to consume it, argue publicly against AI development, support displaced workers financially, and advocate for regulation — while simultaneously declining to judge individual users for their choices. A thoughtful person can also use AI casually for personal creative or productive work, recognise its genuine usefulness, and enjoy the outputs — while declining to judge non-users for their refusal. These positions are compatible, and they are what a consistent application of the default of neutrality looks like. The only incompatible position is the one that weaponises moral judgement at the individual level in either direction. That position does not survive examination, and is what this essay argues against.
-
-References
 
 ### References
 

@@ -1,8 +1,11 @@
 # The AI Culture War — Creative Explanation
 
-*Creative-sphere arguments get weaponised in both directions. Users are accused of producing soulless work; non-users are accused of being Luddites. Both attacks try to load the choice morally. This essay examines the serious creative arguments (authenticity, skill, flourishing, displacement, historical precedent) and asks whether they actually succeed in moving the default of autonomy for either choice.*
+**Authenticity · Skill · Flourishing · Displacement · History**
 
----
+## The Creative Explanation
+
+Creative-sphere arguments get weaponised in both directions. Users are accused of producing soulless work; non-users are accused of being Luddites. Both attacks try to load the choice morally. This essay examines the serious creative arguments — authenticity, skill, flourishing, displacement, historical precedent — and asks whether they actually succeed in moving the default of autonomy for either choice.
+
 ## 1. Scope and Starting Point
 
 This essay works within the framework the Ethical Explanation establishes: that the default for an individual's technology-adoption choice is moral neutrality, and that moving the default requires demonstrated, proportionate harm. Here the question is whether any of the specifically creative-sphere arguments — authenticity, skill, craft displacement, the degradation of human creative practice — manage to do that work. The answer reached after examining them is that each argument identifies something real about how art and creativity function, and none of them successfully moves the default for either choice.
@@ -84,8 +87,6 @@ The creative-sphere arguments against AI use — authenticity, skill dismissal, 
 The creative-sphere arguments against non-use — Luddism, inefficiency, refusing progress — each fail even earlier, because they do not even attempt a harm claim. They are attempts to shame autonomous choice, and the creative sphere's long history of accommodating practitioners who refuse their peers' tools makes this shaming particularly historically blind. Painters refused photography. Illustrators refused digital tools. Musicians refused synthesisers. In every case, refusal produced its own distinctive work, and the sphere was richer for the plurality of choices. Refusing AI is continuous with that tradition.
 
 Three things can be held simultaneously. **Creatively,** AI produces outputs that are aesthetically competent, sometimes striking, and fundamentally limited by its nature as a statistical pattern engine — these are honest observations that leave open a wide range of personal aesthetic responses. **Economically,** labour displacement is real and warrants institutional response, not individual-user moral loading. **Culturally,** human creative practice will continue in transformed forms, and the most skilled practitioners will likely thrive as audiences learn to distinguish human work from machine output — though this is a long-run prediction, cold comfort to currently-displaced workers, and no substitute for just-transition policy. None of these tells any individual how to feel about AI, how to use or not use it, or how to treat any other person who uses or refuses it. Those are autonomous creative choices, and they deserve to remain so.
-
-References
 
 ### References
 
